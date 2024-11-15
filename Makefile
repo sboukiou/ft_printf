@@ -20,7 +20,7 @@ libclean:
 	$(CC) -c $(CFLAGS) $> -o $@
 
 main: main.c printf.c
-	$(CC) $(CFLAGS) main.c printf.c -L. ./libft/libft.a -o main
+	$(CC) $(CFLAGS) -Wno-nonnull main.c printf.c -L. ./libft/libft.a -o main
 
 
 re: fclean all
