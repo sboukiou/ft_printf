@@ -18,11 +18,7 @@ int	ft_printf(const char *buffer, ...)
 	{
 		if (buffer[index] == '%')
 		{
-			ft_putstr_fd("found ->", 1);
-			ft_putchar_fd(buffer[index], 1);
-			ft_putchar_fd(buffer[index + 1], 1);
-			ft_putchar_fd('\n', 1);
-			index ++;
+			ft_putstr_fd(_parse_format(buffer + index));
 		}
 		else
 			ft_putchar_fd(buffer[index], 1);
