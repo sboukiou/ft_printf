@@ -3,11 +3,19 @@
 #include <stdio.h>
 
 
+// %[flags][width][.precision][length]specifier
+
+
 int main(void)
 {
-	char *address = NULL;
-	ft_printf("This is the string %s, this is the char %c, this is a number %d\n");
-	int result = ft_printf(address);
-	printf("%d\n", result);
-	return (0);
+	printf("|% d|\n", 1337);
+	printf("|% d|\n", -1337);
+	printf("|-----\n");
+	printf("|%-&x 8d|\n", -1337);
+	printf("%\n");
+	printf("|% -8d|\n", 1337);
+	printf("|%08d|\n", 1337);
+	printf("|%+8d|\n", 1337);
+	printf("|%-8d|\n", 1337);
+	printf("|%8d|\n", 1337);
 }
