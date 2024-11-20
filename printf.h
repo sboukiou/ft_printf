@@ -10,15 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#ifndef PRINTF_H
+# define PRINTF_H
 
-#define FLAGS "-0.# +"
-#define TYPES "cspdiuxX%"
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-#include <stdarg.h>
+# define FLAGS "-0.# +"
+# define TYPES "cspdiuxX%"
+#define OPS_COUNT 8
+#define HEX_BASE "123456789abcdef"
 
-int	ft_printf(const char *buffer, ...);
-char *_gettypename(char type);
+/*Printers*/
+void	ft_putnbr(int	number);
+void	ft_print_hex(size_t	number);
+void	print_char(char c);
+void	print_string(char *string);
+void	print_integer(int	num);
 
+int		ft_printf(const char *buffer, ...);
+void	call_printer(char identifier, va_list arguments);
 #endif

@@ -1,28 +1,29 @@
 #include "./libft/libft.h"
 #include "printf.h"
 
-
 int	ft_printf(const char *buffer, ...)
 {
-	int	len;
-	int	index;
+	int	length;
+	va_list	arguments;
 
-	len = 0;
-	index = 0;
 	if (!buffer)
 	{
-		ft_putstr_fd("(nil)", 1);
-		return (1);
+		print_string("(nil)");
+		return (0);
 	}
-	while (buffer[index])
+	va_start(arguments, buffer);
+	length = 0;
+	while (buffer[length])
 	{
-		if (buffer[index] == '%')
+		if (buffer[length] == '%')
 		{
-			ft_putstr_fd(_parse_format(buffer + index));
+			length++;
+			call_printer(buffer[length], arguments);
 		}
 		else
-			ft_putchar_fd(buffer[index], 1);
-		index++;
+			print_char(buffer[length]);
+		length++;
 	}
-	return (len);
+	return (length);
 }
+
