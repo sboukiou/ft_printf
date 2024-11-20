@@ -25,12 +25,7 @@ int	call_printer(char *buffer, va_list args_list)
 		index++;
 	if (buffer[index] == 'c')
 		print_char(va_arg(args_list, int));
-	else if (buffer[index] == 'd')
-	{
-		int value = va_arg(args_list, int);
-		print_int(value, get_flags(buffer));
-	}
-	else if (buffer[index] == 'i')
+	else if (buffer[index] == 'd' || buffer[index] == 'i')
 		print_int(va_arg(args_list, int), get_flags(buffer));
 	return (index);
 }
