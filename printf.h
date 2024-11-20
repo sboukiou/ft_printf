@@ -13,15 +13,35 @@
 #ifndef FT_PRINTF_H
 #define FT_PRINTF_H
 
-#define FLAGS "-0.# +"
-#define TYPES "cspdiuxX%"
-
 #include <stdarg.h>
 
-int sum_them_all(const unsigned int n, ...);
-void print_numbers(const char *separator, const unsigned int n, ...);
-void print_strings(const char *separator, const unsigned int n, ...);
+#define FLAGS "-0.# +"
+#define TYPES "cspdiuxX%"
+#define STDOUT 1
+
+typedef enum format
+{
+	HEX,
+	INT,
+	DECIM,
+	ADDR,
+} t_format;
+
+typedef	struct	flags
+{
+	int	space;
+	int	hash;
+	int	plus;
+	int	zero;
+	t_format type;
+}t_flags;
+
+void	print_string(char *str);
+void	print_char(char c);
+void	print_int(int number, t_flags *flags);
 int	ft_printf(const char *buffer, ...);
-char *_gettypename(char type);
+t_flags	*get_flags(char *buffer);
+int	is_set(char c, char *str);
+int	call_printer(char *buffer, va_list args_list);
 
 #endif
