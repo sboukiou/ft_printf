@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = 	libftprintf.a
-SOURCES = printf.c
+SOURCES = printf.c printers.c ft_putnbr.c ft_puthex.c
 OBJECTS := $(SOURCES:%.c=%.o)
 LIB = ./libft
 
@@ -20,7 +20,10 @@ libclean:
 	$(CC) -c $(CFLAGS) $> -o $@
 
 main: main.c printf.c
-	$(CC) $(CFLAGS) -Wno-nonnull main.c printf.c -L. ./libft/libft.a -o main
+	$(CC) $(CFLAGS)  main.c $(SOURCES) -L. ./libft/libft.a -o main
+
+test:
+	$(CC) $(CFLAGS)  $(TEST) $(SOURCES) -L. ./libft/libft.a -o main
 
 
 re: fclean all
