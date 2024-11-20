@@ -11,20 +11,36 @@ void	print_string(char *str)
 	ft_putstr_fd(str, STDOUT);
 }
 
+
+void	handle_width(int width, int number_len)
+{
+		if (width)
+			while (number_len < width)
+			{
+				print_char(' ');
+				number_len++;
+			}
+		else
+			print_char(' ');
+}
+
+
 void	print_int(int number, t_flags *flags)
 {
-	if (flags->space == 1)
-	{
-		if (number < 0)
-			ft_putstr_fd(" ", STDOUT_FILENO);
-	}
-	if (flags->plus == 1)
-	{
-		if (number > 0)
-			ft_putstr_fd("+", STDOUT_FILENO);
+	int	number_len;
 
+	number_len = get_num_len(number);
+	if (flags->space)
+		handle_width(flags->width, number_len);
+	if (flags->plus)
+	{
+		if (number >= 0)
+		{
+			handle_width(flags->width, number_len + 1);
+			print_char('+');
+		}
+		else
+			handle_width(flags->width, number_len);
 	}
-	if (flags->type == INT || flags->type == DECIM)
-		ft_putnbr_fd((int )number, STDOUT_FILENO);
 	ft_putnbr_fd(number, STDOUT);
 }
