@@ -12,7 +12,7 @@ void	print_string(char *str)
 }
 
 
-void	handle_width(int width, int number_len, char indice)
+void	handle_sp_width_flags(int width, int number_len, char indice)
 {
 	if (width)
 		while (number_len < width)
@@ -24,6 +24,24 @@ void	handle_width(int width, int number_len, char indice)
 		print_char(indice);
 }
 
+void	handle_zero_flag(int number, int width, int number_len)
+{
+
+	if (number < 0)
+	{
+		print_char('-');
+		while (number_len++ < width)
+			print_char('0');
+		ft_putnbr_fd(-number, STDOUT);
+	}
+	else
+	{
+		while (number_len++ < width)
+			print_char('0');
+		ft_putnbr_fd(number, STDOUT);
+	}
+}
+
 
 void	print_int(int number, t_flags *flags)
 {
@@ -31,13 +49,18 @@ void	print_int(int number, t_flags *flags)
 
 	number_len = get_num_len(number);
 	if (flags->space)
-		handle_width(flags->width, number_len, ' ');
+		handle_sp_width_flags(flags->width, number_len + 1, ' ');
 	if (flags->plus)
 	{
 		if (number >= 0)
-			handle_width(flags->width, number_len + 1, '+');
+			handle_sp_width_flags(flags->width, number_len + 1, '+');
 		else
-			handle_width(flags->width, number_len, 0);
+			handle_sp_width_flags(flags->width, number_len, 0);
+	}
+	if (flags->zero)
+	{
+		handle_zero_flag(number, flags->width, number_len);
+		return ;
 	}
 	ft_putnbr_fd(number, STDOUT);
 }
