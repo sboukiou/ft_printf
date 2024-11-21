@@ -12,16 +12,16 @@ void	print_string(char *str)
 }
 
 
-void	handle_width(int width, int number_len)
+void	handle_width(int width, int number_len, char indice)
 {
-		if (width)
-			while (number_len < width)
-			{
-				print_char(' ');
-				number_len++;
-			}
-		else
+	if (width)
+		while (number_len < width)
+		{
 			print_char(' ');
+			number_len++;
+		}
+	if (indice)
+		print_char(indice);
 }
 
 
@@ -31,16 +31,13 @@ void	print_int(int number, t_flags *flags)
 
 	number_len = get_num_len(number);
 	if (flags->space)
-		handle_width(flags->width, number_len);
+		handle_width(flags->width, number_len, ' ');
 	if (flags->plus)
 	{
 		if (number >= 0)
-		{
-			handle_width(flags->width, number_len + 1);
-			print_char('+');
-		}
+			handle_width(flags->width, number_len + 1, '+');
 		else
-			handle_width(flags->width, number_len);
+			handle_width(flags->width, number_len, 0);
 	}
 	ft_putnbr_fd(number, STDOUT);
 }
