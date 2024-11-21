@@ -29,13 +29,15 @@ typedef enum format
 
 typedef	struct	flags
 {
+	t_format type;
 	int	space;
 	int	hash;
 	int	plus;
 	int	zero;
 	int	width;
 	int prec;
-	t_format type;
+	int point;
+	int minus;
 }t_flags;
 
 void	print_string(char *str);
