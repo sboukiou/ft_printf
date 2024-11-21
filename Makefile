@@ -1,12 +1,31 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = 	libftprintf.a
-SOURCES = printf.c parser.c handler.c printers.c
+SOURCES = printf.c parser.c handler.c printers.c 
 OBJECTS := $(SOURCES:%.c=%.o)
 LIB = ./libft
+LIBSRC = ./libft/*.c
+AR = ar -rcs
 
 $(NAME): $(OBJECTS)
 	$(AR) $(NAME) $(OBJECTS)
+
+all: $(NAME)
+
+%.o: %.c
+	$(CC)  -c $(CFLAGS) $< -o $@
+
+clean:
+	$(RM) $(OBJECTS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+
+
+
 
 liball: $(LIB)
 	@cd $(LIB) && make && make bonus
@@ -16,15 +35,13 @@ libcleanall:
 libclean:
 	@cd $(LIB) && make clean
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $> -o $@
 
 main: main.c printf.c
 	$(CC) $(CFLAGS) main.c $(SOURCES) -L. ./libft/libft.a -o main
 
 test:
-	$(CC) $(CFLAGS) $(TEST) $(SOURCES) -L. ./libft/libft.a -o main
+	$(CC) $(CFLAGS) $(TEST) -L. $(NAME) -L. ./libft/libft.a -o main
 
 
-re: fclean all
+
 .PHONY: all clean fclean re liball libclean libcleanall main
