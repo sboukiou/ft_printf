@@ -33,6 +33,8 @@ typedef	struct	flags
 	int	hash;
 	int	plus;
 	int	zero;
+	int	width;
+	int prec;
 	t_format type;
 }t_flags;
 
@@ -43,5 +45,6 @@ int	ft_printf(const char *buffer, ...);
 t_flags	*get_flags(char *buffer);
 int	is_set(char c, char *str);
 int	call_printer(char *buffer, va_list args_list);
+int	get_num_len(int number);
 
 #endif
