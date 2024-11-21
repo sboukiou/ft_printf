@@ -20,6 +20,13 @@ t_flags	*get_flags(char *buffer)
 			flags->hash = 1;
 		if (buffer[i] == '0')
 			flags->zero = 1;
+		if (buffer[i] == '.')
+		{
+			flags->point = 1;
+			flags->prec = ft_atoi(buffer + i + 1);
+		}
+		if (buffer[i] == '-')
+			flags->minus = 1;
 		i++;
 	}
 	flags->width = ft_atoi(buffer + i);
