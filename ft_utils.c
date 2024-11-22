@@ -17,6 +17,10 @@ int	ft_putnbr_fld(int n, int fd)
 	char			buffer[20];
 	int	len;
 
+	if (n < 0)
+		len = 1;
+	else
+		len = 0;
 	ft_bzero(buffer, 20);
 	if (n == 0)
 	{
@@ -31,7 +35,7 @@ int	ft_putnbr_fld(int n, int fd)
 		buffer[n++] = (number % 10) + '0';
 		number /= 10;
 	}
-	len = n;
+	len += n;
 	while (n > 0)
 	{
 		ft_putchar_fd(buffer[n - 1], fd);
