@@ -34,7 +34,7 @@ t_flags	*get_flags(char *buffer)
 }
 int	get_num_len(int number)
 {
-	unsigned int	num;
+	int	num;
 	int	count;
 
 	if (!number)

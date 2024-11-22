@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = 	libftprintf.a
-SOURCES = printf.c parser.c handler.c printers.c print_integer.c
+SOURCES = printf.c parser.c handler.c printers.c print_integer.c ft_utils.c
 OBJECTS := $(SOURCES:%.c=%.o)
 LIB = ./libft
 LIBSRC = ./libft/*.c

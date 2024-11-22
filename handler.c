@@ -19,13 +19,15 @@ int	is_set(char c, char *str)
 int	call_printer(char *buffer, va_list args_list)
 {
 	int	index;
+	int	len;
 
 	index = 1;
+	len = 0;
 	while (!is_set(buffer[index], TYPES))
 		index++;
 	if (buffer[index] == 'c')
-		print_char(va_arg(args_list, int));
+		len += print_char((unsigned char)va_arg(args_list, int));
 	else if (buffer[index] == 'd' || buffer[index] == 'i')
-		return (print_int(va_arg(args_list, int), get_flags(buffer)));
-	return (index);
+		len += print_int((int)va_arg(args_list, int), get_flags(buffer));
+	return (len);
 }

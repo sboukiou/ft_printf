@@ -4,30 +4,29 @@
 
 int	ft_printf(const char *buffer, ...)
 {
-	int	len;
-	int	index;
+	int		total_length;
+	int		index;
 	va_list	args_list;
 
-	len = 0;
 	va_start(args_list, buffer);
+
+
 	index = 0;
-	if (!buffer)
-	{
-		ft_putstr_fd("(nil)", 1);
-		return (1);
-	}
+	total_length = 0;
+	if (!buffer || write(STDOUT, "", 0) < 0)
+		return (-1);
 	while (buffer[index])
 	{
 		if (buffer[index] == '%')
 		{
-			len += call_printer((char *)buffer + index, args_list);
-			while (!is_set(buffer[index + 1], TYPES) && buffer[index])
+			total_length += call_printer((char *)buffer + index, args_list);
+			while (!is_set(buffer[index + 1], TYPES))
 				index++;
 			index++;
 		}
 		else
-			ft_putchar_fd(buffer[index], 1);
+			total_length += print_char(buffer[index]);
 		index++;
 	}
-	return (len + index);
+	return (total_length);
 }
