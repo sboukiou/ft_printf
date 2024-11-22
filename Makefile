@@ -7,8 +7,9 @@ LIB = ./libft
 LIBSRC = ./libft/*.c
 AR = ar -rcs
 
-$(NAME): $(OBJECTS)
-	$(AR) $(NAME) $(OBJECTS)
+$(NAME): $(OBJECTS) liball
+	cp libft/*.o .
+	$(AR) $(NAME) $(OBJECTS) *.o
 
 all: $(NAME)
 
