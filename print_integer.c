@@ -19,7 +19,7 @@ static int	handle_minus_for_int(int number, t_flags *flags)
 		number_len++;
 	}
 	len += ft_putnbr_fld(number, STDOUT);
-	while (number_len < flags->width)
+	while (len < flags->width)
 	{
 		len += print_char(' ');
 		number_len++;
@@ -115,12 +115,12 @@ int	print_int(int number, t_flags *flags)
 	number_len = get_num_len(number);
 	if (flags->minus)
 		len += handle_minus_for_int(number, flags);
+	else if (flags->plus)
+			len += handle_plus_for_int(number, flags);
 	else if (flags->space)
 		len += handle_space_for_int(number, flags);
 	else if (flags->zero)
 			len += handle_zero_for_int(number, flags);
-	else if (flags->plus)
-			len += handle_plus_for_int(number, flags);
 	else
 	{
 		while (number_len < flags->width)

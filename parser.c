@@ -34,18 +34,19 @@ t_flags	*get_flags(char *buffer)
 }
 int	get_num_len(int number)
 {
-	int	num;
+	unsigned long	num;
 	int	count;
 
 	if (!number)
 		return (1);
 	count = 0;
-	num = number;
 	if (number < 0)
 	{
 		count++;
 		num = -number;
 	}
+	else
+		num = number;
 	while (num > 0)
 	{
 		num /= 10;

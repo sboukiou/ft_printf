@@ -17,7 +17,7 @@ all: $(NAME)
 	$(CC)  -c $(CFLAGS) $< -o $@
 
 clean:
-	$(RM) $(OBJECTS) main
+	$(RM) $(OBJECTS) main *.o
 
 fclean: clean
 	$(RM) $(NAME)
