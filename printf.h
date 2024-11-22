@@ -40,9 +40,11 @@ typedef	struct	flags
 	int minus;
 }t_flags;
 
+// Flags handlers
+
 void	print_string(char *str);
 void	print_char(char c);
-void	print_int(int number, t_flags *flags);
+int	print_int(int number, t_flags *flags);
 int	ft_printf(const char *buffer, ...);
 t_flags	*get_flags(char *buffer);
 int	is_set(char c, char *str);

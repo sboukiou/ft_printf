@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = 	libftprintf.a
-SOURCES = printf.c parser.c handler.c printers.c 
+SOURCES = printf.c parser.c handler.c printers.c print_integer.c
 OBJECTS := $(SOURCES:%.c=%.o)
 LIB = ./libft
 LIBSRC = ./libft/*.c
@@ -16,7 +16,7 @@ all: $(NAME)
 	$(CC)  -c $(CFLAGS) $< -o $@
 
 clean:
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) main
 
 fclean: clean
 	$(RM) $(NAME)

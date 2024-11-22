@@ -19,10 +19,15 @@ int	ft_printf(const char *buffer, ...)
 	while (buffer[index])
 	{
 		if (buffer[index] == '%')
-			index += call_printer((char *)buffer + index, args_list);
+		{
+			len += call_printer((char *)buffer + index, args_list);
+			while (!is_set(buffer[index + 1], TYPES) && buffer[index])
+				index++;
+			index++;
+		}
 		else
 			ft_putchar_fd(buffer[index], 1);
 		index++;
 	}
-	return (len);
+	return (len + index);
 }
