@@ -130,5 +130,6 @@ int	print_int(int number, t_flags *flags)
 		}
 		len += ft_putnbr_fld(number, STDOUT);
 	}
+	free(flags);
 	return (len);
 }
