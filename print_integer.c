@@ -1,4 +1,4 @@
-#include "printf.h"
+#include "ft_printf.h"
 #include "libft/libft.h"
 
 static int	handle_minus_for_int(int number, t_flags *flags)

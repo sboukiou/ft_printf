@@ -1,5 +1,5 @@
 #include "libft/libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
 int	is_set(char c, char *str)
 {

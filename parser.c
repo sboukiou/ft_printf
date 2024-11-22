@@ -1,5 +1,5 @@
 #include "libft/libft.h"
-#include "printf.h"
+#include "ft_printf.h"
 
 t_flags	*get_flags(char *buffer)
 {
