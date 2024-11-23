@@ -52,6 +52,7 @@ typedef	struct	tokens
 
 // Flags handlers
 
+int	print_large_numbers(unsigned int number);
 int	ft_printf(const char *buffer, ...);
 int	ft_putnbr_fld(int n, int fd);
 void	print_long(long number);

@@ -1,7 +1,7 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-int	print_unsigned(unsigned int number)
+int	print_large_numbers(unsigned int number)
 {
 	int	len;
 	if (!number)
@@ -9,7 +9,7 @@ int	print_unsigned(unsigned int number)
 	len = 0;
 	if (number < 10)
 		return (print_char(number + '0'));
-	len += print_unsigned(number / 10);
+	len += print_large_numbers(number / 10);
 	len += print_char(number % 10 + '0');
 	return (len);
 }
@@ -98,9 +98,9 @@ int	ft_printf(const char *format, ...)
 			else if (format[index] == 's')
 				total_len += print_string(va_arg(args_list, char *));
 			else if (format[index] == 'd' || format[index] == 'i')
-				total_len += ft_putnbr_fld(va_arg(args_list, int), STDOUT);
+				total_len += print_large_numbers(va_arg(args_list, int));
 			else if (format[index] == 'u')
-				total_len += print_unsigned(va_arg(args_list, unsigned int));
+				total_len += print_large_numbers(va_arg(args_list, unsigned int));
 			else if (format[index] == 'p')
 				total_len += print_address(va_arg(args_list, void *));
 			else if (format[index] == 'X')

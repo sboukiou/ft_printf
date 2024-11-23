@@ -68,5 +68,17 @@ int	get_num_len(int number)
 	return (count);
 }
 
+int	print_large_numbers(unsigned int number)
+{
+	int	len;
+	if (!number)
+		return (print_char('0'));
+	len = 0;
+	if (number < 10)
+		return (print_char(number + '0'));
+	len += print_large_numbers(number / 10);
+	len += print_char(number % 10 + '0');
+	return (len);
+}
 
 

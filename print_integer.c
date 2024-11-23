@@ -18,7 +18,7 @@ static int	handle_minus_for_int(int number, t_tokens *tokens)
 		len += print_char(' ');
 		number_len++;
 	}
-	len += ft_putnbr_fld(number, STDOUT);
+	len += print_large_numbers(number);
 	while (len < tokens->width)
 	{
 		len += print_char(' ');
@@ -46,7 +46,7 @@ static int	handle_space_for_int(int number, t_tokens *tokens)
 			number_len++;
 		}
 	}
-	len += ft_putnbr_fld(number, STDOUT);
+	len += print_large_numbers(number);
 	return (len);
 }
 
@@ -87,7 +87,7 @@ static int	handle_zero_for_int(int number, t_tokens *tokens)
 	if (number == -2147483648)
 		len += print_string("2147483648");
 	else
-		len += ft_putnbr_fld(ft_abs(number), STDOUT);
+		len += print_large_numbers(ft_abs(number));
 
 	return (len);
 }
@@ -106,7 +106,7 @@ int	handle_plus_for_int(int number, t_tokens *tokens)
 	}
 	if (number >= 0)
 		len += print_char('+');
-	len += ft_putnbr_fld(number, STDOUT);
+	len += print_large_numbers(number);
 	return (len);
 }
 
@@ -132,7 +132,7 @@ int	print_integers(long number, t_tokens *tokens)
 			len += print_char(' ');
 			number_len++;
 		}
-		len += ft_putnbr_fld(number, STDOUT);
+		len += print_large_numbers(number);
 	}
 	return (len);
 }
