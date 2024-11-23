@@ -49,7 +49,7 @@ int	print_hex_upper(unsigned int number, int hash)
 }
 
 
-static int	print_hex_large(long int number, int hash)
+static int	print_hex_large(long long number, int hash)
 {
 
 	int	len;
@@ -70,7 +70,7 @@ static int	print_hex_large(long int number, int hash)
 
 int	print_address(void	*address)
 {
-	unsigned long	addr_value;
+	long long	addr_value;
 
 	addr_value = (unsigned long)address;
 	if (!addr_value)
