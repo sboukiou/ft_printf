@@ -23,9 +23,9 @@ int	print_hex(long long number, int hash)
 	if (!hash)
 		len += print_string("0x");
 	if (!number)
-		return (print_char('0'));
+		return (len += print_char('0'));
 	if (number < 16)
-		return (print_char(HEX_BASE[number]));
+		return (len += print_char(HEX_BASE[number]));
 	len += print_hex(number / 16, 1);
 	len += print_char(HEX_BASE[number % 16]);
 	return (len);
