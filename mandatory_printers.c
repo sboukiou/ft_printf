@@ -1,0 +1,88 @@
+#include "ft_printf.h"
+
+int	print_unsigned(unsigned int number)
+{
+	int	len;
+	if (!number)
+		return (print_char('0'));
+	len = 0;
+	if (number < 10)
+		return (print_char(number + '0'));
+	len += print_unsigned(number / 10);
+	len += print_char(number % 10 + '0');
+	return (len);
+}
+
+int	print_hex(long long number)
+{
+
+	int	len;
+	if (!number)
+		return (print_char('0'));
+	len = 0;
+	if (number < 10)
+		return (print_char(HEX_BASE[number]));
+	len += print_hex(number / 10);
+	len += print_char(HEX_BASE[number % 10]);
+	return (len);
+}
+
+int	print_hex_upper(long long number)
+{
+
+	int	len;
+	if (!number)
+		return (print_char('0'));
+	len = 0;
+	if (number < 10)
+		return (print_char(HEX_BASE_UPPER[number]));
+	len += print_hex(number / 10);
+	len += print_char(HEX_BASE_UPPER[number % 10]);
+	return (len);
+}
+
+int	print_address(void	*address)
+{
+	unsigned long	addr_value;
+
+	addr_value = (long long)address;
+	return (print_hex(addr_value));
+}
+
+int	ft_printf(const char *format, ...)
+{
+	int	total_len;
+	int	index;
+	va_list	args_list;
+
+	index = 0;
+	total_len = 0;
+	va_start(args_list, format);
+	while (format[index])
+	{
+		if (format[index] == '%')
+		{
+			index++;
+			if (format[index] == '%')
+				total_len += print_char('%');
+			else if (format[index] == 'c')
+				total_len += print_char(va_arg(args_list, int));
+			else if (format[index] == 's')
+					total_len += print_string(va_arg(args_list, char *));
+			else if (format[index] == 'd' || format[index] == 'i')
+					total_len += ft_putnbr_fld(va_arg(args_list, int), STDOUT);
+			else if (format[index] == 'u')
+					total_len += print_unsigned(va_arg(args_list, unsigned int));
+			else if (format[index] == 'p')
+					total_len += print_address(va_arg(args_list, void *));
+			else if (format[index] == 'x')
+					total_len += print_hex(va_arg(args_list, long long));
+			else if (format[index] == 'X')
+					total_len += print_hex_upper(va_arg(args_list, long long));
+			index++;
+		}
+		total_len += print_char(format[index]);
+		index++;
+	}
+	return (total_len);
+}

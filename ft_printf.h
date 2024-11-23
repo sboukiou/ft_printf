@@ -20,6 +20,8 @@
 #define FLAGS "-0.# +"
 #define TYPES "cspdiuxX%"
 #define STDOUT 1
+#define HEX_BASE "0123456789abcdef"
+#define HEX_BASE_UPPER "0123456789ABCDEF"
 
 typedef enum type
 {
