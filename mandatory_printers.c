@@ -86,9 +86,9 @@ int	ft_printf(const char *format, ...)
 				total_len += print_hex_upper(va_arg(args_list, long long), 1);
 			else if (format[index] == 'x')
 				total_len += print_hex(va_arg(args_list, long long), 1);
-			index++;
 		}
-		total_len += print_char(format[index]);
+		else
+			total_len += print_char(format[index]);
 		index++;
 	}
 	return (total_len);
