@@ -106,8 +106,6 @@ int	handle_plus_for_int(int number, t_tokens *tokens)
 	}
 	if (number >= 0)
 		len += print_char('+');
-	else
-		len += print_char(' ');
 	len += ft_putnbr_fld(number, STDOUT);
 	return (len);
 }
