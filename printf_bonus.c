@@ -1,8 +1,8 @@
 #include "./libft/libft.h"
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 
-int	_printf(const char *buffer, ...)
+int	ft_printf(const char *buffer, ...)
 {
 	int		total_length;
 	int		index;

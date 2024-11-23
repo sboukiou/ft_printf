@@ -66,8 +66,6 @@ static int	print_hex_large(unsigned long number, int hash)
 	return (len);
 }
 
-
-
 int	print_address(void	*address)
 {
 	unsigned long	addr_value;
