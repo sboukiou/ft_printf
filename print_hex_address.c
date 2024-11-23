@@ -8,7 +8,7 @@ int	print_address_p(void	*address, t_tokens *tokens)
 
 	len = 0;
 	(void)tokens;
-	print_address(address);
+	len += print_address(address);
 	return (len);
 }
 
@@ -16,7 +16,7 @@ int print_hex_x(unsigned int number, t_tokens *tokens)
 {
 	int	len;
 	len = 0;
-	len += print_hex(number, tokens->hash);
+	len += print_hex(number, !tokens->hash);
 	return (len);
 }
 
@@ -24,6 +24,6 @@ int print_hex_X(unsigned int number, t_tokens *tokens)
 {
 	int	len;
 	len = 0;
-	len += print_hex_upper(number, tokens->hash);
+	len += print_hex_upper(number, !tokens->hash);
 	return (len);
 }
