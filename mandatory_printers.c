@@ -61,7 +61,7 @@ static int	print_hex_large(unsigned long number, int hash)
 		return (len += print_char('0'));
 	if (number < 16)
 		return (len += print_char(HEX_BASE[number]));
-	len += print_hex(number / 16, 1);
+	len += print_hex_large(number / 16, 1);
 	len += print_char(HEX_BASE[number % 16]);
 	return (len);
 }
@@ -70,15 +70,12 @@ static int	print_hex_large(unsigned long number, int hash)
 
 int	print_address(void	*address)
 {
-	long long	addr_value;
+	unsigned long	addr_value;
 
-	addr_value = (long long)address;
+	addr_value = (unsigned long)address;
 	if (!addr_value)
 		return (print_string("(nil)"));
-	if (addr_value > 0)
-		return (print_hex_large(addr_value, 0));
-	else
-		return (print_hex_large(-addr_value, 0));
+	return (print_hex_large(addr_value, 0));
 }
 
 
