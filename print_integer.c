@@ -136,6 +136,5 @@ int	print_int(int number, t_tokens *tokens)
 		}
 		len += ft_putnbr_fld(number, STDOUT);
 	}
-	free(tokens);
 	return (len);
 }
