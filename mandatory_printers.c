@@ -49,7 +49,7 @@ int	print_hex_upper(unsigned int number, int hash)
 }
 
 
-static int	print_hex_large(long long number, int hash)
+static int	print_hex_large(unsigned long number, int hash)
 {
 
 	int	len;
