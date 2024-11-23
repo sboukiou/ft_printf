@@ -14,7 +14,7 @@ int	print_unsigned(unsigned int number)
 	return (len);
 }
 
-int	print_hex(unsigned long number, int hash)
+int	print_hex(unsigned int number, int hash)
 {
 
 	int	len;
