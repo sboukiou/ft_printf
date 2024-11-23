@@ -17,7 +17,6 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 		ret_val = print_char('%');
 	else if (tokens->type == UNSI)
 		ret_val = print_integers(va_arg(args_list, unsigned int), tokens);
-		ret_val = print_char('%');
 	free(tokens);
 	return (ret_val);
 }
