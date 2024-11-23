@@ -61,6 +61,6 @@ int	ft_printf(const char *format, ...);
 t_tokens	*get_tokens(const char *buffer);
 int	is_set(char c, char *str);
 int	call_printer(t_tokens *tokens, va_list args_list);
-int	get_num_len(int number);
+int	get_num_len(long long number);
 
 #endif

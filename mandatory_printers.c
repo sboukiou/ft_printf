@@ -1,7 +1,7 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-int	print_large_numbers(unsigned int number)
+static int	print_large_numbers(long int number)
 {
 	int	len;
 	if (!number)
