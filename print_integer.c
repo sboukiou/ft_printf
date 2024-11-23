@@ -110,7 +110,7 @@ int	handle_plus_for_int(int number, t_tokens *tokens)
 	return (len);
 }
 
-int	print_int(int number, t_tokens *tokens)
+int	print_integers(int number, t_tokens *tokens)
 {
 	int	number_len;
 	int	len;

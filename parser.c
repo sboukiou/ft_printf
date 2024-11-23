@@ -12,7 +12,12 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 	else if (tokens->type ==  STR)
 		ret_val = print_string(va_arg(args_list, char *));
 	else if (tokens->type ==  DECIM || tokens->type == INT)
-		ret_val = print_int(va_arg(args_list, int), tokens);
+		ret_val = print_integers(va_arg(args_list, int), tokens);
+	else if (tokens->type == PRCND)
+		ret_val = print_char('%');
+	else if (tokens->type == UNSI)
+		ret_val = print_integers(va_arg(args_list, unsigned int), tokens);
+		ret_val = print_char('%');
 	free(tokens);
 	return (ret_val);
 }
