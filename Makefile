@@ -3,15 +3,14 @@ CFLAGS = -Wall -Werror -Wextra
 NAME = 	libftprintf.a
 SOURCES = printf.c parser.c tokenizer.c printers.c print_integer.c ft_utils.c
 OBJECTS := $(SOURCES:%.c=%.o)
-MAN_SRC=mandatory_printers.c
-MAN_OBJ=mandatory_printers.o
+MAN_SRC=mandatory_printers.c printers.c ft_utils.c
+MAN_OBJ=$(MAN_SRC:%.c=%.o)
 LIB = ./libft
 LIBSRC = ./libft/*.c
 AR = ar -rcs
 
-$(NAME): $(MAN_OBJ) liball
-	cp libft/*.o .
-	$(AR) $(NAME) $(OBJECTS) *.o
+$(NAME): $(MAN_OBJ)
+	$(AR) $(NAME) $(MAN_OBJ)
 
 all: $(NAME)
 
@@ -26,7 +25,6 @@ fclean: clean
 
 re: fclean all
 
-bonus: all
 
 
 

@@ -57,7 +57,7 @@ void	print_long(long number);
 int	print_string(char *str);
 int	print_char(char c);
 int	print_int(int number, t_tokens *tokens);
-int	ft_printf(const char *buffer, ...);
+int	ft_printf(const char *format, ...);
 t_tokens	*get_tokens(const char *buffer);
 int	is_set(char c, char *str);
 int	call_printer(t_tokens *tokens, va_list args_list);

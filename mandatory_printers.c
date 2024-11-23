@@ -1,3 +1,4 @@
+#include "libft/libft.h"
 #include "ft_printf.h"
 
 int	print_unsigned(unsigned int number)
@@ -13,31 +14,37 @@ int	print_unsigned(unsigned int number)
 	return (len);
 }
 
-int	print_hex(long long number)
+int	print_hex(long long number, int hash)
 {
 
 	int	len;
+
+	len = 0;
+	if (!hash)
+		len += print_string("0x");
 	if (!number)
 		return (print_char('0'));
-	len = 0;
-	if (number < 10)
+	if (number < 16)
 		return (print_char(HEX_BASE[number]));
-	len += print_hex(number / 10);
-	len += print_char(HEX_BASE[number % 10]);
+	len += print_hex(number / 16, 1);
+	len += print_char(HEX_BASE[number % 16]);
 	return (len);
 }
 
-int	print_hex_upper(long long number)
+int	print_hex_upper(long long number, int hash)
 {
 
 	int	len;
+
+	len = 0;
+	if (!hash)
+		len += print_string("0X");
 	if (!number)
 		return (print_char('0'));
-	len = 0;
-	if (number < 10)
+	if (number < 16)
 		return (print_char(HEX_BASE_UPPER[number]));
-	len += print_hex(number / 10);
-	len += print_char(HEX_BASE_UPPER[number % 10]);
+	len += print_hex_upper(number / 16, 1);
+	len += print_char(HEX_BASE_UPPER[number % 16]);
 	return (len);
 }
 
@@ -46,7 +53,7 @@ int	print_address(void	*address)
 	unsigned long	addr_value;
 
 	addr_value = (long long)address;
-	return (print_hex(addr_value));
+	return (print_hex(addr_value, 0));
 }
 
 int	ft_printf(const char *format, ...)
@@ -68,17 +75,17 @@ int	ft_printf(const char *format, ...)
 			else if (format[index] == 'c')
 				total_len += print_char(va_arg(args_list, int));
 			else if (format[index] == 's')
-					total_len += print_string(va_arg(args_list, char *));
+				total_len += print_string(va_arg(args_list, char *));
 			else if (format[index] == 'd' || format[index] == 'i')
-					total_len += ft_putnbr_fld(va_arg(args_list, int), STDOUT);
+				total_len += ft_putnbr_fld(va_arg(args_list, int), STDOUT);
 			else if (format[index] == 'u')
-					total_len += print_unsigned(va_arg(args_list, unsigned int));
+				total_len += print_unsigned(va_arg(args_list, unsigned int));
 			else if (format[index] == 'p')
-					total_len += print_address(va_arg(args_list, void *));
-			else if (format[index] == 'x')
-					total_len += print_hex(va_arg(args_list, long long));
+				total_len += print_address(va_arg(args_list, void *));
 			else if (format[index] == 'X')
-					total_len += print_hex_upper(va_arg(args_list, long long));
+				total_len += print_hex_upper(va_arg(args_list, long long), 1);
+			else if (format[index] == 'x')
+				total_len += print_hex(va_arg(args_list, long long), 1);
 			index++;
 		}
 		total_len += print_char(format[index]);

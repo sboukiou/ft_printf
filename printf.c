@@ -2,7 +2,7 @@
 #include "ft_printf.h"
 
 
-int	ft_printf(const char *buffer, ...)
+int	_printf(const char *buffer, ...)
 {
 	int		total_length;
 	int		index;
