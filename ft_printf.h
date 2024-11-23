@@ -14,22 +14,30 @@
 #define FT_PRINTF_H
 
 #include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 #define FLAGS "-0.# +"
 #define TYPES "cspdiuxX%"
 #define STDOUT 1
 
-typedef enum format
+typedef enum type
 {
-	HEX,
-	INT,
+	CHAR,
+	STR,
+	PTR,
 	DECIM,
-	ADDR,
-} t_format;
+	INT,
+	UNSI,
+	HEX_L,
+	HEX_U,
+	PRCND,
+	ERR,
+} t_type;
 
-typedef	struct	flags
+typedef	struct	tokens
 {
-	t_format type;
+	t_type type;
 	int	space;
 	int	hash;
 	int	plus;
@@ -38,7 +46,7 @@ typedef	struct	flags
 	int prec;
 	int point;
 	int minus;
-}t_flags;
+}t_tokens;
 
 // Flags handlers
 
@@ -46,11 +54,11 @@ int	ft_putnbr_fld(int n, int fd);
 void	print_long(long number);
 int	print_string(char *str);
 int	print_char(char c);
-int	print_int(int number, t_flags *flags);
+int	print_int(int number, t_tokens *tokens);
 int	ft_printf(const char *buffer, ...);
-t_flags	*get_flags(char *buffer);
+t_tokens	*get_tokens(const char *buffer);
 int	is_set(char c, char *str);
-int	call_printer(char *buffer, va_list args_list);
+int	call_printer(t_tokens *tokens, va_list args_list);
 int	get_num_len(int number);
 
 #endif
