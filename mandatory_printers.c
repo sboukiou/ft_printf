@@ -53,6 +53,8 @@ int	print_address(void	*address)
 	unsigned long	addr_value;
 
 	addr_value = (unsigned long)address;
+	if (!addr_value)
+		return (print_string("(nil)"));
 	return (print_hex(addr_value, 0));
 }
 
