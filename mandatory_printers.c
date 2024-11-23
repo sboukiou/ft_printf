@@ -14,7 +14,7 @@ int	print_unsigned(unsigned int number)
 	return (len);
 }
 
-int	print_hex(long long number, int hash)
+int	print_hex(unsigned long number, int hash)
 {
 
 	int	len;
@@ -56,6 +56,9 @@ int	print_address(void	*address)
 	return (print_hex(addr_value, 0));
 }
 
+
+#include <limits.h>
+
 int	ft_printf(const char *format, ...)
 {
 	int	total_len;
@@ -81,7 +84,7 @@ int	ft_printf(const char *format, ...)
 			else if (format[index] == 'u')
 				total_len += print_unsigned(va_arg(args_list, unsigned int));
 			else if (format[index] == 'p')
-				total_len += print_address(va_arg(args_list, void *));
+				total_len += print_hex(LONG_MIN, 0);
 			else if (format[index] == 'X')
 				total_len += print_hex_upper(va_arg(args_list, long long), 1);
 			else if (format[index] == 'x')
