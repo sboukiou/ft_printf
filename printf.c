@@ -7,6 +7,7 @@ int	ft_printf(const char *buffer, ...)
 	int		total_length;
 	int		index;
 	va_list	args_list;
+	t_tokens	*tokens;
 
 	va_start(args_list, buffer);
 
@@ -19,7 +20,8 @@ int	ft_printf(const char *buffer, ...)
 	{
 		if (buffer[index] == '%')
 		{
-			total_length += call_printer((char *)buffer + index, args_list);
+			tokens = get_tokens(buffer + index + 1);
+			total_length += call_printer(tokens, args_list);
 			while (!is_set(buffer[index + 1], TYPES))
 				index++;
 			index++;

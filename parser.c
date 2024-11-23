@@ -1,34 +1,15 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-t_flags	*get_flags(char *buffer)
+int	call_printer(t_tokens *tokens, va_list args_list)
 {
-	int	i;
-	t_flags	*flags;
-
-	flags = (t_flags *)ft_calloc(1, sizeof(t_flags));
-	if (!flags)
-		return (NULL);
-	i = 1;
-	while (is_set(buffer[i], FLAGS))
-	{
-		if (buffer[i] == ' ')
-			flags->space = 1;
-		if (buffer[i] == '+')
-			flags->plus = 1;
-		if (buffer[i] == '#')
-			flags->hash = 1;
-		if (buffer[i] == '0')
-			flags->zero = 1;
-		if (buffer[i] == '.')
-		{
-			flags->point = 1;
-			flags->prec = ft_atoi(buffer + i + 1);
-		}
-		if (buffer[i] == '-')
-			flags->minus = 1;
-		i++;
-	}
-	flags->width = ft_atoi(buffer + i);
-	return (flags);
+	if (!tokens)
+		return (0);
+	if (tokens->type == CHAR)
+		return (print_char(va_arg(args_list, int)));
+	else if (tokens->type ==  STR)
+		return (print_string(va_arg(args_list, char *)));
+	else if (tokens->type ==  DECIM || tokens->type == INT)
+		return (print_int(va_arg(args_list, int), tokens));
+	return (print_char('%'));
 }
