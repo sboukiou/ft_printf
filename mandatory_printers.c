@@ -72,10 +72,13 @@ int	print_address(void	*address)
 {
 	long long	addr_value;
 
-	addr_value = (unsigned long)address;
+	addr_value = (long long)address;
 	if (!addr_value)
 		return (print_string("(nil)"));
-	return (print_hex_large(addr_value, 0));
+	if (addr_value > 0)
+		return (print_hex_large(addr_value, 0));
+	else
+		return (print_hex_large(-addr_value, 0));
 }
 
 
