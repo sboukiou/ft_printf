@@ -9,6 +9,8 @@ int	print_char(char c)
 
 int	print_string(char *str)
 {
+	if (!str)
+		return (0);
 	ft_putstr_fd(str, STDOUT);
 	return (ft_strlen(str));
 }
