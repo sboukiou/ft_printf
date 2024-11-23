@@ -61,6 +61,12 @@ int	ft_printf(const char *format, ...);
 t_tokens	*get_tokens(const char *buffer);
 int	is_set(char c, char *str);
 int	call_printer(t_tokens *tokens, va_list args_list);
+
 int	get_num_len(long long number);
+int	print_hex(unsigned int number, int hash);
+int	print_hex_upper(unsigned int number, int hash);
+int	print_address(void	*address);
+int	print_hex_large(unsigned long number, int hash);
+
 
 #endif

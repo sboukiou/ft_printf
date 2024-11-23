@@ -17,6 +17,12 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 		ret_val = print_char('%');
 	else if (tokens->type == UNSI)
 		ret_val = print_integers(va_arg(args_list, unsigned int), tokens);
+	else if (tokens->type == HEX_L)
+		ret_val = print_hex_x(va_arg(args_list, unsigned int), tokens);
+	else if (tokens->type == HEX_U)
+		ret_val = print_hex_X(va_arg(args_list, unsigned int), tokens);
+	else if (tokens->type == PTR)
+		ret_val = print_address_p(va_arg(args_list, void *), tokens);
 	free(tokens);
 	return (ret_val);
 }

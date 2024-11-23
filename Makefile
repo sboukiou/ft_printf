@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = 	libftprintf.a
-SOURCES = printf_bonus.c parser.c tokenizer.c printers.c print_integer.c ft_utils.c
+SOURCES = printf_bonus.c parser.c tokenizer.c printers.c print_integer.c ft_utils.c print_hex_address.c
 OBJECTS := $(SOURCES:%.c=%.o)
 MAN_SRC=mandatory_printers.c printers.c ft_utils.c
 MAN_OBJ=$(MAN_SRC:%.c=%.o)
