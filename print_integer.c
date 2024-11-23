@@ -50,12 +50,12 @@ static int	handle_space_for_int(int number, t_flags *flags)
 	return (len);
 }
 
-// static unsigned int	ft_abs(int number)
-// {
-// 	if (number >= 0)
-// 		return (number);
-// 	return (-number);
-// }
+static unsigned int	ft_abs(int number)
+{
+	if (number >= 0)
+		return (number);
+	return (-number);
+}
 
 static int	handle_zero_for_int(int number, t_flags *flags)
 {
@@ -87,7 +87,8 @@ static int	handle_zero_for_int(int number, t_flags *flags)
 	if (number == -2147483648)
 		len += print_string("2147483648");
 	else
-		len += ft_putnbr_fld(number, STDOUT);
+		len += ft_putnbr_fld(ft_abs(number), STDOUT);
+
 	return (len);
 }
 
