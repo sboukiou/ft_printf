@@ -43,3 +43,29 @@ int	ft_putnbr_fld(int n, int fd)
 	}
 	return (len);
 }
+
+int	get_num_len(int number)
+{
+	unsigned int	num;
+	int	count;
+
+	if (!number)
+		return (1);
+	count = 0;
+	if (number < 0)
+	{
+		count++;
+		num = -number;
+	}
+	else
+		num = number;
+	while (num > 0)
+	{
+		num /= 10;
+		count++;
+	}
+	return (count);
+}
+
+
+

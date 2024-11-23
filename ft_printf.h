@@ -43,6 +43,7 @@ typedef	struct	flags
 // Flags handlers
 
 int	ft_putnbr_fld(int n, int fd);
+void	print_long(long number);
 int	print_string(char *str);
 int	print_char(char c);
 int	print_int(int number, t_flags *flags);
