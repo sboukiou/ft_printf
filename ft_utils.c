@@ -35,7 +35,7 @@ int	print_large_numbers(long long number)
 		number *= -1;
 	}
 	if (number < 10)
-		return (print_char(number + '0'));
+		return (len += print_char(number + '0'));
 	len += print_large_numbers(number / 10);
 	len += print_char(number % 10 + '0');
 	return (len);
