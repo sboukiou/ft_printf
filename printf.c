@@ -14,8 +14,11 @@ int	ft_printf(const char *buffer, ...)
 
 	index = 0;
 	total_length = 0;
-	if (!buffer || write(STDOUT, "", 0) < 0)
-		return (-1);
+	if (!buffer)
+	{
+		print_string("NULL");
+		return (4);
+	}
 	while (buffer[index])
 	{
 		if (buffer[index] == '%')
