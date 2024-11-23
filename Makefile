@@ -10,7 +10,8 @@ LIBSRC = ./libft/*.c
 AR = ar -rcs
 
 $(NAME): $(MAN_OBJ)
-	$(AR) $(NAME) $(MAN_OBJ)
+	make liball
+	$(AR) $(NAME) $(MAN_OBJ) libft/*.o
 
 all: $(NAME)
 
