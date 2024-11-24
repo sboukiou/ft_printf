@@ -8,7 +8,7 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 	if (!tokens)
 		return (0);
 	if (tokens->type == CHAR)
-		ret_val = print_char(va_arg(args_list, int));
+		ret_val = print_char_bonus(va_arg(args_list, int), tokens);
 	else if (tokens->type ==  STR)
 		ret_val = print_string(va_arg(args_list, char *));
 	else if (tokens->type ==  DECIM || tokens->type == INT)

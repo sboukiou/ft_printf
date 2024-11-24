@@ -7,7 +7,7 @@ LIB_A = ./libft/libft.a
 AR = ar -rcs
 
 # FILES  for printf bonus
-SOURCES = printf_bonus.c parser.c tokenizer.c printers.c print_integer.c ft_utils.c print_hex_address.c
+SOURCES = printf_bonus.c parser.c tokenizer.c printers.c print_integer_bonus.c ft_utils.c print_hex_address.c print_char_bonus.c
 OBJECTS := $(SOURCES:%.c=%.o)
 
 # FILES for printf mand
