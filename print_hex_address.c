@@ -1,17 +1,6 @@
 #include "ft_printf.h"
 #include "ft_printf_bonus.h"
 
-
-int	print_address_p(void	*address, t_tokens *tokens)
-{
-	int	len;
-
-	len = 0;
-	(void)tokens;
-	len += print_address(address);
-	return (len);
-}
-
 int print_hex_x(unsigned int number, t_tokens *tokens)
 {
 	int	len;

@@ -22,7 +22,7 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 	else if (tokens->type == HEX_U)
 		ret_val = print_hex_X(va_arg(args_list, unsigned int), tokens);
 	else if (tokens->type == PTR)
-		ret_val = print_address_p(va_arg(args_list, void *), tokens);
+		ret_val = print_address_bonus(va_arg(args_list, void *), tokens);
 	free(tokens);
 	return (ret_val);
 }

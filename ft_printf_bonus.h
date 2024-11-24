@@ -73,9 +73,9 @@ int	print_hex_large(unsigned long number, int hash);
 /* bonus printers */
 int	print_char_bonus(char c, t_tokens *tokens);
 int	print_string_bonus(char *string, t_tokens *tokens);
+int	print_address_bonus(void	*address, t_tokens *tokens);
 
 
-int	print_address_p(void	*address, t_tokens *tokens);
 int print_hex_X(unsigned int number, t_tokens *tokens);
 int print_hex_x(unsigned int number, t_tokens *tokens);
 
