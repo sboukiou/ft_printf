@@ -22,6 +22,7 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 		len = ft_strlen(string);
 		while (len < tokens->width)
 			len += print_char(' ');
+		print_string(string);
 	}
 	return (len);
 }
