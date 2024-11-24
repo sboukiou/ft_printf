@@ -10,7 +10,7 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 	if (tokens->type == CHAR)
 		ret_val = print_char_bonus(va_arg(args_list, int), tokens);
 	else if (tokens->type ==  STR)
-		ret_val = print_string(va_arg(args_list, char *));
+		ret_val = print_string_bonus(va_arg(args_list, char *), tokens);
 	else if (tokens->type ==  DECIM || tokens->type == INT)
 		ret_val = print_integers(va_arg(args_list, int), tokens);
 	else if (tokens->type == PRCND)
