@@ -15,6 +15,11 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 {
 	int	len;
 
+	if (!string)
+	{
+		ft_putstr_fd("(null)", STDOUT);
+		return (6);
+	}
 	if (tokens->minus)
 		len = print_string_minus(string, tokens->width);
 	else
