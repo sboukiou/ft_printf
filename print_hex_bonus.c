@@ -85,6 +85,8 @@ int print_hex_upper_bonus(unsigned int number, t_tokens *tokens)
 		return (len);
 	}
 	len = get_hex_len(number, tokens->hash);
+	while (len < tokens->width && tokens->zero)
+		len += print_char('0');
 	while (len < tokens->width)
 		len += print_char(' ');
 	print_hex_upper(number, tokens->hash);
