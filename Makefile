@@ -19,10 +19,15 @@ LIB_SRCS= $(LIB)/*.c
 LIB_OBJS = $(LIB_SRCS:%.c=%.o)
 
 # NAME --> libftprintf.a
-$(NAME): $(MAN_OBJ) $(LIB_OBJS)
-	$(RM) printf_bonus.o
+# $(NAME): $(MAN_OBJ) $(LIB_OBJS)
+# 	$(RM) printf_bonus.o
+# 	make liball
+# 	$(AR) $(NAME) $(MAN_OBJ) $(LIB_OBJS)
+
+(NAME): $(OBJECTS) $(LIB_OBJS)
+	$(RM) mandatory_printers.o
 	make liball
-	$(AR) $(NAME) $(MAN_OBJ) $(LIB_OBJS)
+	$(AR) $(NAME) $(OBJECTS) $(LIB_OBJS)
 
 # All rule
 all: $(NAME)
@@ -42,11 +47,7 @@ fclean: clean
 # Re --> Recreate $(NAME)
 re: fclean all
 
-bonus: $(OBJECTS) $(LIB_OBJS)
-	$(RM) mandatory_printers.o
-	make liball
-	$(AR) $(NAME) $(OBJECTS) $(LIB_OBJS)
-
+bonus: $(NAME)
 
 # LIBFT make rules
 liball:
