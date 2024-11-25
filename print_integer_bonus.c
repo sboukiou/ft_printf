@@ -65,6 +65,17 @@ static int	handle_zero_for_int(int number, t_tokens *tokens)
 
 	number_len = get_num_len(number);
 	len = 0;
+	if (number < 0)
+		len += print_char('-');
+	if (tokens->point && tokens->prec)
+	{
+		if (number < 0)
+		while (tokens->prec > number_len - 1)
+		{
+				tokens->prec--;
+			len += print_char('0');
+		}
+	}
 	if (tokens->space && number >= 0)
 	{
 		len += print_char(' ');
@@ -74,10 +85,6 @@ static int	handle_zero_for_int(int number, t_tokens *tokens)
 	{
 		len += print_char('+');
 		number_len++;
-	}
-	if (number < 0)
-	{
-		len += print_char('-');
 	}
 	while (number_len < tokens->width)
 	{
@@ -123,7 +130,7 @@ int	print_integers(long number, t_tokens *tokens)
 			len += handle_plus_for_int(number, tokens);
 	else if (tokens->space)
 		len += handle_space_for_int(number, tokens);
-	else if (tokens->zero || (tokens->point && tokens->prec > number_len))
+	else if (tokens->zero || (tokens->point && tokens->prec >= number_len))
 			len += handle_zero_for_int(number, tokens);
 	else
 	{
