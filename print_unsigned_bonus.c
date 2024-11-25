@@ -26,6 +26,7 @@ int	print_unsigned_bonus(unsigned long number, t_tokens *tokens)
 			len += print_large_unsigned(number);
 			while (len < tokens->width && tokens->space)
 				len += print_char(' ');
+			return (len);
 		}
 		else if (tokens->zero)
 			while (len < tokens->width - get_num_len(number))
