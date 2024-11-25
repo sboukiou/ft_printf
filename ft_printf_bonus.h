@@ -64,8 +64,6 @@ int	is_set(char c, char *str);
 int	call_printer(t_tokens *tokens, va_list args_list);
 
 int	get_num_len(long long number);
-int	print_hex(unsigned int number, int hash);
-int	print_hex_upper(unsigned int number, int hash);
 int	print_address(void	*address);
 int	print_hex_large(unsigned long number, int hash);
 
@@ -74,9 +72,7 @@ int	print_hex_large(unsigned long number, int hash);
 int	print_char_bonus(char c, t_tokens *tokens);
 int	print_string_bonus(char *string, t_tokens *tokens);
 int	print_address_bonus(void	*address, t_tokens *tokens);
-
-
-int print_hex_X(unsigned int number, t_tokens *tokens);
-int print_hex_x(unsigned int number, t_tokens *tokens);
+int print_hex_upper_bonus(unsigned int number, t_tokens *tokens);
+int print_hex_lower_bonus(unsigned int number, t_tokens *tokens);
 
 #endif

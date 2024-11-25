@@ -41,37 +41,3 @@ int	print_large_numbers(long long number)
 	return (len);
 }
 
-
-int	print_hex(unsigned int number, int hash)
-{
-
-	int	len;
-
-	len = 0;
-	if (!hash)
-		len += print_string("0x");
-	if (!number)
-		return (len += print_char('0'));
-	if (number < 16)
-		return (len += print_char(HEX_BASE[number]));
-	len += print_hex(number / 16, 1);
-	len += print_char(HEX_BASE[number % 16]);
-	return (len);
-}
-
-int	print_hex_upper(unsigned int number, int hash)
-{
-
-	int	len;
-
-	len = 0;
-	if (!hash)
-		len += print_string("0X");
-	if (!number)
-		return (print_char('0'));
-	if (number < 16)
-		return (print_char(HEX_BASE_UPPER[number]));
-	len += print_hex_upper(number / 16, 1);
-	len += print_char(HEX_BASE_UPPER[number % 16]);
-	return (len);
-}
