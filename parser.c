@@ -16,7 +16,7 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 	else if (tokens->type == PRCND)
 		ret_val = print_char('%');
 	else if (tokens->type == UNSI)
-		ret_val = print_integers(va_arg(args_list, unsigned int), tokens);
+		ret_val = print_unsigned_bonus(va_arg(args_list, unsigned int), tokens);
 	else if (tokens->type == HEX_L)
 		ret_val = print_hex_lower_bonus(va_arg(args_list, unsigned int), tokens);
 	else if (tokens->type == HEX_U)
