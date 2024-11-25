@@ -123,7 +123,7 @@ int	print_integers(long number, t_tokens *tokens)
 			len += handle_plus_for_int(number, tokens);
 	else if (tokens->space)
 		len += handle_space_for_int(number, tokens);
-	else if (tokens->zero)
+	else if (tokens->zero || (tokens->point && tokens->prec > number_len))
 			len += handle_zero_for_int(number, tokens);
 	else
 	{
