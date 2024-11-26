@@ -1,5 +1,5 @@
 #include "libft/libft.h"
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 int	call_printer(t_tokens *tokens, va_list args_list)
 {
@@ -7,12 +7,13 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 
 	if (!tokens)
 		return (0);
+	ret_val = 0;
 	if (tokens->type == CHAR)
 		ret_val = print_char_bonus(va_arg(args_list, int), tokens);
 	else if (tokens->type ==  STR)
 		ret_val = print_string_bonus(va_arg(args_list, char *), tokens);
 	else if (tokens->type ==  DECIM || tokens->type == INT)
-		ret_val = print_integers(va_arg(args_list, int), tokens);
+		ret_val = print_integers_bonus(va_arg(args_list, int), tokens);
 	else if (tokens->type == PRCND)
 		ret_val = print_char('%');
 	else if (tokens->type == UNSI)

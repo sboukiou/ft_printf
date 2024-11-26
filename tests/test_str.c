@@ -70,7 +70,7 @@ int main(void)
 	print_string("\n ---- TESTING DOTS -----\n");
 
 	ret_t = printf("|%.1s|\n", "");;
-	ret = ft_printf("|%.1s|\n", "");;
+	ret_t = ft_printf("|%.1s|\n", "");;
 	printf("%d -- %d\n", ret_t, ret);
 	printf("\n------------\n");
 
@@ -79,12 +79,12 @@ int main(void)
 	printf("%d -- %d\n", ret_t, ret);
 	printf("\n------------\n");
 
-	ret_t = printf("|%.s|\n", "-");;
-	ret = ft_printf("|%.s|\n", "-");;
+	ret_t = printf("|%.s|\n", "----");;
+	ret = ft_printf("|%.s|\n", "----");;
 	printf("%d -- %d\n", ret_t, ret);
 	printf("\n------------\n");
 
-	ret_t = printf("||%.2s %.1s|\n", "", "-");;
+	ret_t = printf("|%.2s %.1s|\n", "", "-");;
 	ret = ft_printf("|%.2s %.1s|\n", "", "-");;
 	printf("%d -- %d\n", ret_t, ret);
 	printf("\n------------\n");

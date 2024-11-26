@@ -50,21 +50,30 @@ typedef	struct	tokens
 	int minus;
 }t_tokens;
 
-// Flags handlers
 
-int	ft_putnbr_fld(int n, int fd);
-void	print_long(long number);
+/*Simple printers functions*/
+int	ft_printf(const char *buffer, ...);
 int	print_string(char *str);
 int	print_char(char c);
 int	print_integers(long number, t_tokens *tokens);
-int	ft_printf(const char *format, ...);
+
+
+/*Helper functiosn*/
 t_tokens	*get_tokens(const char *buffer);
 int	is_set(char c, char *str);
 int	call_printer(t_tokens *tokens, va_list args_list);
-
 int	get_num_len(long long number);
-int	print_address(void	*address);
 int	print_hex_large(unsigned long number, int hash);
+int	print_large_numbers(long long number);
 
+
+/* bonus printers */
+int	print_char_bonus(char c, t_tokens *tokens);
+int	print_string_bonus(char *string, t_tokens *tokens);
+int	print_address_bonus(void	*address, t_tokens *tokens);
+int print_hex_upper_bonus(unsigned int number, t_tokens *tokens);
+int print_hex_lower_bonus(unsigned int number, t_tokens *tokens);
+int	print_unsigned_bonus(unsigned long number, t_tokens *tokens);
+int	print_integers_bonus(long number, t_tokens *tokens);
 
 #endif

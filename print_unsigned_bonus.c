@@ -1,5 +1,25 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
+static int	print_spaces(int count)
+{
+	int len;
+
+	len = 0;
+	while (len < count)
+		len += print_char(' ');
+	return (len);
+}
+
+static int	print_zeros(int count)
+{
+	int len;
+
+	len = 0;
+	while (len < count)
+		len += print_char('0');
+	return (len);
+}
+
 
 static int	print_large_unsigned(unsigned long number)
 {
@@ -15,6 +35,35 @@ static int	print_large_unsigned(unsigned long number)
 	return (len);
 }
 
+static int	print_minus(unsigned long number, t_tokens *tokens)
+{
+	int	len;
+
+	len = 0;
+	if (tokens->prec > tokens->width)
+	{
+		if (tokens->plus)
+			len += print_char('+');
+		else if (tokens->space)
+			len += print_char(' ');
+		len += print_zeros(tokens->prec);
+		len += print_large_unsigned(number);
+		return (len);
+	}
+	else
+	{
+		len += print_spaces(tokens->width - tokens->prec);
+		if (tokens->plus)
+			len += print_char('+');
+		else if (tokens->space)
+			len += print_char(' ');
+		len += print_zeros(tokens->prec - get_num_len(number));
+		len += print_large_unsigned(number);
+		return (len);
+	}
+	return (len);
+}
+
 
 int	print_unsigned_bonus(unsigned long number, t_tokens *tokens)
 {
@@ -22,18 +71,26 @@ int	print_unsigned_bonus(unsigned long number, t_tokens *tokens)
 
 	len = 0;
 		if (tokens->minus)
-		{
-			len += print_large_unsigned(number);
-			while (len < tokens->width)
-				len += print_char(' ');
-			return (len);
-		}
+			return (print_minus(number, tokens));
 		else if (tokens->zero)
+		{
+			if (tokens->plus)
+				len += print_char('+');
+			else if (tokens->space)
+				len += print_char(' ');
 			while (len < tokens->width - get_num_len(number))
 				len += print_char('0');
+				
+		}
 		else
+		{
 			while (len < tokens->width - get_num_len(number))
 				len += print_char(' ');
+			if (tokens->plus)
+				len += print_char('+');
+			else if (tokens->space)
+				len += print_char(' ');
+		}
 		len += print_large_unsigned(number);
 	return (len);
 }
