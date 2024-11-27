@@ -5,24 +5,13 @@ static int	print_string_precision(char *str, t_tokens *tokens)
 {
 	int	i;
 	int	len;
-	int	max;
 
-	if (!ft_strlen(str))
-		return (0);
 	i = 0;
 	len = 0;
-	if (tokens->prec > tokens->width)
-		max = tokens->prec;
-	else
-		max = tokens->width;
-	len += print_spaces(max - ft_strlen(str) + 1);
-	while (len < max && str[i])
-	{
-		print_char(str[i]);
-		i++;
-		len++;
-	}
-	return (len);
+	len += print_spaces(tokens->width - ft_strlen(str));
+	while (i < tokens->prec && str[i])
+		print_char(str[i++]);
+	return (len + i);
 }
 
 int	print_string_bonus(char *string, t_tokens *tokens)
