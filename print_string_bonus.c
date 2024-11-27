@@ -29,7 +29,7 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 	int	len;
 
 	if (!string)
-		return (print_string("(null)"));
+		string  = "(null)";
 	len = 0;
 	if (tokens->point)
 	{
