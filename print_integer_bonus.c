@@ -1,26 +1,5 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
-
-static int	print_spaces(int count)
-{
-	int len;
-
-	len = 0;
-	while (len < count)
-		len += print_char(' ');
-	return (len);
-}
-
-static int	print_zeros(int count)
-{
-	int len;
-
-	len = 0;
-	while (len < count)
-		len += print_char('0');
-	return (len);
-}
-
 static int	print_minus(long number, t_tokens *tokens)
 {
 	int	len;

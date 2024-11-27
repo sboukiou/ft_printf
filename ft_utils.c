@@ -1,6 +1,27 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
+int	print_spaces(int count)
+{
+	int len;
+
+	len = 0;
+	while (len < count)
+		len += print_char(' ');
+	return (len);
+}
+
+int	print_zeros(int count)
+{
+	int len;
+
+	len = 0;
+	while (len < count)
+		len += print_char('0');
+	return (len);
+}
+
+
 int	get_num_len(long long number)
 {
 	int	len;
