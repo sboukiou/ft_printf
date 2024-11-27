@@ -60,11 +60,6 @@ t_tokens	*get_tokens(const char *buffer)
 			tokens->hash = 1;
 		else if (buffer[i] == '0')
 			tokens->zero = 1;
-		else if (buffer[i] == '.')
-		{
-			tokens->point = 1;
-			tokens->prec = ft_atoi(buffer + i + 1);
-		}
 		else if (buffer[i] == '-')
 			tokens->minus = 1;
 		i++;
@@ -72,6 +67,14 @@ t_tokens	*get_tokens(const char *buffer)
 	tokens->width = ft_atoi(buffer + i);
 	while (ft_isdigit(buffer[i]))
 		i++;
+	if (buffer[i] == '.')
+	{
+		tokens->point = 1;
+		i++;
+		tokens->prec = ft_atoi(buffer + i);
+		while (ft_isdigit(buffer[i]))
+			i++;
+	}
 	tokens->type = get_type(buffer[i]);
 		return (tokens);
 }

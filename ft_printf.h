@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define FLAGS "-0.# +"
+#define FLAGS "-0# +"
 #define TYPES "cspdiuxX%"
 #define STDOUT 1
 #define HEX_BASE "0123456789abcdef"

@@ -3,30 +3,38 @@
 
 static int	print_string_precision(char *str, t_tokens *tokens)
 {
-	unsigned int	i;
-	unsigned int	max;
+	int	i;
+	int	len;
+	int	max;
 
+	if (!ft_strlen(str))
+		return (0);
 	i = 0;
+	len = 0;
 	if (tokens->prec > tokens->width)
 		max = tokens->prec;
 	else
 		max = tokens->width;
-	i += print_spaces(max - ft_strlen(str));
-	i += print_string(str);
-	return (i);
+	len += print_spaces(max - ft_strlen(str) + 1);
+	while (len < max && str[i])
+	{
+		print_char(str[i]);
+		i++;
+		len++;
+	}
+	return (len);
 }
 
 int	print_string_bonus(char *string, t_tokens *tokens)
 {
 	int	len;
 
-	if (!string)
+	if (string == NULL)
 		string  = "(null)";
 	len = 0;
 	if (tokens->point)
 	{
-		len += print_string_precision(string, tokens);
-		return (len);
+		return (print_string_precision(string, tokens));
 	}
 	else if (tokens->minus)
 	{
