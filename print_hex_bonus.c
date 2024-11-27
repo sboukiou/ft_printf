@@ -11,7 +11,10 @@ static int	print_hex_lower(unsigned int number, int hash)
 	if (hash)
 		len += print_string("0x");
 	if (!number)
-		return (len += print_char('0'));
+	{
+		len += print_string("0x");
+		len += print_char('0');
+	}
 	if (number < 16)
 		return (len += print_char(HEX_BASE[number]));
 	len += print_hex_lower(number / 16, 0);
@@ -28,7 +31,10 @@ static int	print_hex_upper(unsigned int number, int hash)
 	if (hash)
 		len += print_string("0X");
 	if (!number)
-		return (print_char('0'));
+	{
+		len += print_string("0X");
+		len += print_char('0');
+	}
 	if (number < 16)
 		return (print_char(HEX_BASE_UPPER[number]));
 	len += print_hex_upper(number / 16, 0);

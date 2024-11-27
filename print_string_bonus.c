@@ -1,26 +1,18 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-/*static int	print_string_minus(char *string, int width)*/
-/*{*/
-/*	int	len;*/
-/**/
-/*	len = print_string(string);*/
-/*	while (len < width)*/
-/*		len += print_char(' ');*/
-/*	return (len);*/
-/*}*/
-
-static int	print_string_precision(char *str, int precision)
+static int	print_string_precision(char *str, t_tokens *tokens)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	max;
 
 	i = 0;
-	while (i < precision && str[i])
-	{
-		print_char(str[i]);
-		i++;
-	}
+	if (tokens->prec > tokens->width)
+		max = tokens->prec;
+	else
+		max = tokens->width;
+	i += print_spaces(max - ft_strlen(str));
+	i += print_string(str);
 	return (i);
 }
 
@@ -33,7 +25,7 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 	len = 0;
 	if (tokens->point)
 	{
-		len += print_string_precision(string, tokens->prec);
+		len += print_string_precision(string, tokens);
 		return (len);
 	}
 	else if (tokens->minus)
