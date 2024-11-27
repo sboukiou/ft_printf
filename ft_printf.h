@@ -74,6 +74,6 @@ int	print_address_bonus(void	*address, t_tokens *tokens);
 int print_hex_upper_bonus(unsigned int number, t_tokens *tokens);
 int print_hex_lower_bonus(unsigned int number, t_tokens *tokens);
 int	print_unsigned_bonus(unsigned long number, t_tokens *tokens);
-int	print_integers_bonus(long number, t_tokens *tokens);
+int	print_integers_bonus(int number, t_tokens *tokens);
 
 #endif

@@ -26,22 +26,23 @@ static int	print_minus(long number, t_tokens *tokens)
 	int	len;
 
 	len = 0;
-	if (tokens->prec > tokens->width)
+	if (tokens->point && tokens->prec > tokens->width)
 	{
 		len += print_char('-');
-		len += print_zeros(tokens->prec);
+		len += print_zeros(tokens->prec - get_num_len(number));
 		len += print_large_numbers(-number);
 	}
 	else
 	{
-		len += print_spaces(tokens->width - tokens->prec);
+		len += print_char('-');
 		len += print_zeros(tokens->prec - get_num_len(number));
-		len += print_large_numbers(number);
+		len += print_large_numbers(-number);
+		len += print_spaces(tokens->width - tokens->prec - get_num_len(number));
 	}
 	return (len);
 }
 
-int	print_prec(long number, t_tokens *tokens)
+static int	print_prec(long number, t_tokens *tokens)
 {
 	int	len;
 
@@ -49,11 +50,11 @@ int	print_prec(long number, t_tokens *tokens)
 	len += print_spaces(tokens->width - tokens->prec);
 	len += print_char('-');
 	len += print_zeros(tokens->prec - get_num_len(number) + 1);
-	len += print_large_numbers(number * -1);
+	len += print_large_numbers((unsigned int)-number);
 	return (len);
 }
 
-int	print_integers_bonus(long number, t_tokens *tokens)
+int	print_integers_bonus(int number, t_tokens *tokens)
 {
 	int	len;
 
@@ -68,7 +69,7 @@ int	print_integers_bonus(long number, t_tokens *tokens)
 	{
 		len += print_char('-');
 		len += print_zeros(tokens->width - get_num_len(number));
-		len += print_large_numbers(number * -1);
+		len += print_large_numbers((unsigned int)-number);
 	}
 	else
 	{
