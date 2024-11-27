@@ -10,10 +10,7 @@ int	print_char(char c)
 int	print_string(char *str)
 {
 	if (!str)
-	{
-		ft_putstr_fd("(null)", STDOUT);
-		return (6);
-	}
+		return (0);
 	ft_putstr_fd(str, STDOUT);
 	return (ft_strlen(str));
 }
