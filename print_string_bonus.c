@@ -36,6 +36,8 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 		return (print_string_precision(string, tokens));
 	else if (tokens->minus)
 	{
+		if (!string)
+			string =  "(null)";
 		len += print_string(string);
 		while (len < tokens->width)
 			len += print_char(' ');
