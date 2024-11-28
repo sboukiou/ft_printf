@@ -67,6 +67,8 @@ int	call_printer(t_tokens *tokens, va_list args_list);
 int	get_num_len(long long number);
 int	print_hex_large(unsigned long number, int hash);
 int	print_large_numbers(long long number);
+int	ft_min(int a, int b);
+int	ft_max(int a, int b);
 
 
 /* bonus printers */

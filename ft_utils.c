@@ -1,5 +1,18 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
+int	ft_min(int a, int b)
+{
+	if (a > b)
+		return (b);
+	return (a);
+}
+
+int	ft_max(int a, int b)
+{
+	if (a < b)
+		return (b);
+	return (a);
+}
 
 int	print_spaces(int count)
 {

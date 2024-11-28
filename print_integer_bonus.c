@@ -1,5 +1,24 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
+
+static int	print_prec(long number, t_tokens *tokens)
+{
+	int	len;
+	int	max;
+	int	num_len;
+
+	len = 0;
+	num_len = get_num_len(number);
+	if (tokens->prec > num_len)
+		max = tokens->prec + 1;
+	else
+		max = num_len;
+	len += print_spaces(tokens->width - max);
+	len += print_char('-');
+	len += print_zeros(tokens->prec - get_num_len(number) + 1);
+	return (len);
+}
+
 static int	print_minus(long number, t_tokens *tokens)
 {
 	int	len;
@@ -8,28 +27,16 @@ static int	print_minus(long number, t_tokens *tokens)
 	if (tokens->point && tokens->prec > tokens->width)
 	{
 		len += print_char('-');
-		len += print_zeros(tokens->prec - get_num_len(number));
+		len += print_zeros(tokens->prec - get_num_len(number) + 1);
 		len += print_large_numbers(-number);
 	}
 	else
 	{
 		len += print_char('-');
-		len += print_zeros(tokens->prec - get_num_len(number));
+		len += print_zeros(tokens->prec - get_num_len(number) + 1);
 		len += print_large_numbers(-number);
-		len += print_spaces(tokens->width - tokens->prec - get_num_len(number));
+		len += print_spaces(tokens->width - len);
 	}
-	return (len);
-}
-
-static int	print_prec(long number, t_tokens *tokens)
-{
-	int	len;
-
-	len = 0;
-	len += print_spaces(tokens->width - tokens->prec);
-	len += print_char('-');
-	len += print_zeros(tokens->prec - get_num_len(number) + 1);
-	len += print_large_numbers((unsigned int)-number);
 	return (len);
 }
 
@@ -43,7 +50,14 @@ int	print_integers_bonus(int number, t_tokens *tokens)
 	if (tokens->minus)
 		return (print_minus(number, tokens));
 	if (tokens->point)
-		return (print_prec(number, tokens));
+	{
+		len += print_prec(number, tokens);
+		if (tokens->prec || tokens->width)
+			len += print_large_numbers((unsigned int)-number);
+		else
+			len += print_char(' ');
+		return (len);
+	}
 	if (tokens->zero)
 	{
 		len += print_char('-');

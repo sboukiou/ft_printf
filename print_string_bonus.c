@@ -1,13 +1,6 @@
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	ft_min(int a, int b)
-{
-	if (a > b)
-		return (b);
-	return (a);
-}
-
 static int	print_string_precision(char *str, t_tokens *tokens)
 {
 	int	i;
@@ -16,7 +9,7 @@ static int	print_string_precision(char *str, t_tokens *tokens)
 	i = 0;
 	len = 0;
 	if (!str)
-		str = "";
+		str = "(null)";
 	if (tokens->minus)
 		while (i < tokens->prec && str[i])
 			print_char(str[i++]);
@@ -36,7 +29,7 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 		return (print_string_precision(string, tokens));
 	else if (tokens->minus)
 	{
-		if (!string)
+		if (!string && !tokens->prec)
 			string =  "(null)";
 		len += print_string(string);
 		while (len < tokens->width)
