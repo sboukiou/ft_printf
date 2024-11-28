@@ -10,7 +10,7 @@ static int	print_string_precision(char *str, t_tokens *tokens)
 	len = 0;
 	if (!str && tokens->prec >= 6)
 		str = "(null)";
-	else
+	else if (!str)
 		str = "";
 	if (tokens->minus)
 		while (i < tokens->prec && str[i])
@@ -27,7 +27,7 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 	int	len;
 
 	len = 0;
-	if (tokens->point || tokens->prec)
+	if (tokens->point)
 		return (print_string_precision(string, tokens));
 	else if (tokens->minus)
 	{
