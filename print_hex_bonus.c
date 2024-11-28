@@ -112,9 +112,7 @@ int print_hex_upper_bonus(unsigned int number, t_tokens *tokens)
 	len = 0;
 	if (tokens->minus)
 	{
-		if (tokens->width > tokens->prec)
-			len += print_zeros(tokens->width - ft_max(tokens->prec, get_hex_len(number, tokens->hash)));
-		else
+		if (tokens->width < tokens->prec)
 			len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
 		len += print_hex_upper(number, tokens->hash);
 		while (len < tokens->width)
