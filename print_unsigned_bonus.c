@@ -33,10 +33,10 @@ static int	print_minus(unsigned long number, t_tokens *tokens)
 	if (tokens->point)
 	{
 		len += print_zeros(tokens->prec - get_num_len(number));
-		if (!tokens->prec && !number && !tokens->width)
-			len += print_char(' ');
-		else
+		if (tokens->prec || number)
 			len += print_large_unsigned(number);
+		else
+			len += print_char(' ');
 		len += print_spaces(tokens->width - len);
 		return (len);
 	}
@@ -77,10 +77,10 @@ int	print_unsigned_bonus(unsigned long number, t_tokens *tokens)
 	if (tokens->point)
 	{
 		len += print_prec(number, tokens);
-		if ((!tokens->prec && !number) && !tokens->width)
-			len += 1;
-		else
+		if ((tokens->prec || number))
 			len += print_large_unsigned(number);
+		else if (tokens->width)
+			len += print_char(' ');
 		return (len);
 	}
 	else if (tokens->zero)
