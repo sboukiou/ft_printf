@@ -31,7 +31,7 @@ clean:
 	@$(RM) $(OBJECTS) $(LIB_OBJS)
 
 # Fclean --> clean + rm $(NAME)
-fclean: clean
+fclean: clean libcleanall
 	@$(RM) $(NAME)
 
 # Re --> Recreate $(NAME)
