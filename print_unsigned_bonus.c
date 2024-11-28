@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:13:00 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/11/28 14:36:00 by sboukiou         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:41:18 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	print_unsigned_bonus(unsigned long number, t_tokens *tokens)
 		else if (tokens->space)
 			len += print_char(' ');
 		len += print_zeros(tokens->width - get_num_len(number) - len);
+		len += print_large_unsigned(number);
 		return (len);
 	}
 	return (print_no_flags(number, tokens));
