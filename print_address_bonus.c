@@ -28,7 +28,7 @@ int	print_address_bonus(void	*address, t_tokens *tokens)
 	len = 0;
 	addr_value = (unsigned long)address;
 	if (!address)
-		return (print_string("(nil)"));
+		return (print_string_bonus("(nil)", tokens));
 	else
 	{
 		if (tokens->minus)
