@@ -52,7 +52,9 @@ t_tokens	*get_tokens(const char *buffer)
 	i = 0;
 	while (is_set(buffer[i], FLAGS))
 	{
-		if (buffer[i] == ' ')
+		if (buffer[i] == '-')
+			tokens->minus = 1;
+		else if (buffer[i] == ' ')
 			tokens->space = 1;
 		else if (buffer[i] == '+')
 			tokens->plus = 1;
@@ -60,8 +62,6 @@ t_tokens	*get_tokens(const char *buffer)
 			tokens->hash = 1;
 		else if (buffer[i] == '0')
 			tokens->zero = 1;
-		else if (buffer[i] == '-')
-			tokens->minus = 1;
 		i++;
 	}
 	tokens->width = ft_atoi(buffer + i);
