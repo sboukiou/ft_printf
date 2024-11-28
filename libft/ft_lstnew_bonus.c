@@ -18,7 +18,6 @@ t_list	*ft_lstnew(void *content)
 	t_list	*new;
 
 	(void)new;
-
 	node = ft_calloc(1, sizeof(t_list));
 	if (!node)
 		return (NULL);
