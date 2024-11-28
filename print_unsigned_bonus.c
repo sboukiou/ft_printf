@@ -70,10 +70,8 @@ int	print_unsigned_bonus(unsigned long number, t_tokens *tokens)
 		if (tokens->point)
 		{
 			len += print_prec(number, tokens);
-			if (tokens->prec && tokens->width)
+			if (tokens->prec || tokens->width)
 				len += print_large_unsigned(number);
-			else if (tokens->width)
-				len += print_char(' ');
 			return (len);
 		}
 		else if (tokens->zero)
