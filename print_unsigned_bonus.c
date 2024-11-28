@@ -6,7 +6,7 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:13:00 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/11/28 14:31:00 by sboukiou         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:36:00 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	print_minus(unsigned long number, t_tokens *tokens)
 	return (len);
 }
 
-static int	print_no_flags(int number, t_tokens *tokens)
+static int	print_no_flags(unsigned long number, t_tokens *tokens)
 {
 	int	len;
 	int	num_len;
