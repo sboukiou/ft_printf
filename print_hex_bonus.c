@@ -89,7 +89,8 @@ int print_hex_lower_bonus(unsigned int number, t_tokens *tokens)
 	if (tokens->minus)
 	{
 		len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
-		len += print_hex_lower(number, tokens->hash);
+		if (!tokens->point || (tokens->prec || number))
+			len += print_hex_lower(number, tokens->hash);
 		while (len < tokens->width)
 			len +=  print_char(' ');
 		return (len);
@@ -112,7 +113,8 @@ int print_hex_upper_bonus(unsigned int number, t_tokens *tokens)
 	if (tokens->minus)
 	{
 		len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
-		len += print_hex_upper(number, tokens->hash);
+		if (!tokens->point || (tokens->prec || number))
+			len += print_hex_upper(number, tokens->hash);
 		while (len < tokens->width)
 			len +=  print_char(' ');
 		return (len);
