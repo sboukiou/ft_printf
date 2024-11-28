@@ -54,7 +54,6 @@ typedef struct tokens
 int			ft_printf(const char *buffer, ...);
 int			print_string(char *str);
 int			print_char(char c);
-int			print_integers(long number, t_tokens *tokens);
 int			print_zeros(int count);
 int			print_spaces(int count);
 
