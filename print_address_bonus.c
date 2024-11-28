@@ -24,28 +24,23 @@ int	print_address_bonus(void	*address, t_tokens *tokens)
 {
 	unsigned long	addr_value;
 	int				len;
+	int				hex_len;
 
 	len = 0;
 	addr_value = (unsigned long)address;
+	hex_len = get_hex_len(addr_value, 1);
 	if (!address)
 		return (print_string_bonus("(nil)", tokens));
-	else
+	if (tokens->minus)
 	{
-		if (tokens->minus)
-		{
-			len += print_hex_large(addr_value, tokens->hash);
-			while (len < tokens->width)
-				len += print_char(' ');
-			return (len);
-		}
-		else if (tokens->space)
-		{
-			len += print_hex_large(addr_value, tokens->hash);
-			while (len < tokens->width)
-				len += print_char(' ');
-			return (len);
-		}
+		len += print_hex_large(addr_value, tokens->hash);
+		while (len < tokens->width)
+			len += print_char(' ');
+		return (len);
 	}
-	return (print_hex_large(addr_value, 0));
+	while (len < tokens->width - hex_len)
+		len += print_char(' ');
+	len += print_hex_large(addr_value, tokens->hash);
+	return (len);
 }
 

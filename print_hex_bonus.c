@@ -42,23 +42,6 @@ static int	print_hex_upper(unsigned int number, int hash)
 	return (len);
 }
 
-static int	get_hex_len(unsigned int number, int hash)
-{
-	int	len;
-
-	len = 0;
-	if (hash && number)
-		len += 2;
-	if (!number)
-		return (len + 1);
-	while (number > 0)
-	{
-		number /= 16;
-		len++;
-	}
-	return (len);
-}
-
 static int	print_prec(long number, t_tokens *tokens, int upper)
 {
 	int	len;

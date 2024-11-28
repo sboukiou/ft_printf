@@ -4,18 +4,13 @@
 static int	print_prec(long number, t_tokens *tokens)
 {
 	int	len;
-	int	max;
 	int	num_len;
 
 	len = 0;
 	num_len = get_num_len(number);
-	if (tokens->prec > num_len)
-		max = tokens->prec + 1;
-	else
-		max = num_len;
-	len += print_spaces(tokens->width - max);
+	len += print_spaces(tokens->width - ft_max(num_len, tokens->prec + 1));
 	len += print_char('-');
-	len += print_zeros(tokens->prec - get_num_len(number) + 1);
+	len += print_zeros(tokens->prec - num_len + 1);
 	return (len);
 }
 

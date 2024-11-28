@@ -74,3 +74,20 @@ int	print_large_numbers(long long number)
 	return (len);
 }
 
+int	get_hex_len(unsigned long number, int hash)
+{
+	int	len;
+
+	len = 0;
+	if (hash && number)
+		len += 2;
+	if (!number)
+		return (len + 1);
+	while (number > 0)
+	{
+		number /= 16;
+		len++;
+	}
+	return (len);
+}
+

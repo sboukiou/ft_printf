@@ -69,6 +69,7 @@ int	print_hex_large(unsigned long number, int hash);
 int	print_large_numbers(long long number);
 int	ft_min(int a, int b);
 int	ft_max(int a, int b);
+int	get_hex_len(unsigned long number, int hash);
 
 
 /* bonus printers */
