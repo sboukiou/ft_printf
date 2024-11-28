@@ -8,8 +8,10 @@ static int	print_string_precision(char *str, t_tokens *tokens)
 
 	i = 0;
 	len = 0;
-	if (!str)
+	if (!str && tokens->prec >= 6)
 		str = "(null)";
+	else
+		str = "";
 	if (tokens->minus)
 		while (i < tokens->prec && str[i])
 			print_char(str[i++]);
