@@ -32,9 +32,7 @@ static int	print_minus(long number, t_tokens *tokens)
 	}
 	else
 	{
-		len += print_char('-');
-		len += print_zeros(tokens->prec - get_num_len(number) + 1);
-		len += print_large_numbers(-number);
+		len += print_large_numbers(number);
 		len += print_spaces(tokens->width - len);
 	}
 	return (len);

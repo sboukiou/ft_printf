@@ -58,14 +58,7 @@ static int	print_minus(unsigned long number, t_tokens *tokens)
 	{
 		if (tokens->plus)
 			len += print_char('+');
-		len += print_zeros(tokens->prec - get_num_len(number));
-		if (!tokens->prec && !number)
-		{
-			if (tokens->width)
-				len += print_char(' ');
-		}
-		else
-			len += print_large_unsigned(number);
+		len += print_large_unsigned(number);
 		len += print_spaces(tokens->width - len);
 		return (len);
 	}
