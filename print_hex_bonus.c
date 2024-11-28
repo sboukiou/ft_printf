@@ -74,7 +74,7 @@ static int	print_prec(long number, t_tokens *tokens, int upper)
 	else
 	{
 		if (tokens->prec || number)
-			len += print_hex_upper(number, tokens->hash);
+			len += print_hex_lower(number, tokens->hash);
 	}
 	if (!tokens->prec && !number && tokens->width)
 		print_char(' ');
@@ -88,8 +88,7 @@ int print_hex_lower_bonus(unsigned int number, t_tokens *tokens)
 	len = 0;
 	if (tokens->minus)
 	{
-		if (tokens->width < tokens->prec)
-			len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
+		len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
 		len += print_hex_lower(number, tokens->hash);
 		while (len < tokens->width)
 			len +=  print_char(' ');
@@ -112,8 +111,7 @@ int print_hex_upper_bonus(unsigned int number, t_tokens *tokens)
 	len = 0;
 	if (tokens->minus)
 	{
-		if (tokens->width < tokens->prec)
-			len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
+		len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
 		len += print_hex_upper(number, tokens->hash);
 		while (len < tokens->width)
 			len +=  print_char(' ');
