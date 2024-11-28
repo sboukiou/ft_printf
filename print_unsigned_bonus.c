@@ -6,21 +6,12 @@
 /*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:13:00 by sboukiou          #+#    #+#             */
-/*   Updated: 2024/11/28 14:20:51 by sboukiou         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:31:00 by sboukiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
-
-static int	print_zero(unsigned int number, t_tokens *tokens)
-{
-	int	len;
-
-	len = 0;
-	print_zeros(tokens->width - get_num_len(number));
-	return (len);
-}
 
 static int	print_prec(long number, t_tokens *tokens)
 {
