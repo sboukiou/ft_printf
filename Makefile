@@ -1,4 +1,4 @@
-# Commands or FU expressions
+# Commands or FF expressions
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = 	libftprintf.a
@@ -10,24 +10,14 @@ AR = ar -rcs
 SOURCES = printf_bonus.c parser.c tokenizer.c printers.c print_integer_bonus.c ft_utils.c ft_utils_2.c print_hex_bonus.c print_char_bonus.c print_string_bonus.c print_address_bonus.c print_unsigned_bonus.c
 OBJECTS := $(SOURCES:%.c=%.o)
 
-# FILES for printf mand
-MAN_SRC=mandatory_printers.c printers.c ft_utils.c
-MAN_OBJ=$(MAN_SRC:%.c=%.o)
-
 # FILES for libft deps
 LIB_SRCS= $(LIB)/*.c
 LIB_OBJS = $(LIB_SRCS:%.c=%.o)
 
-# NAME --> libftprintf.a
-# $(NAME): $(MAN_OBJ) $(LIB_OBJS)
-# 	$(RM) printf_bonus.o
-# 	make liball
-# 	$(AR) $(NAME) $(MAN_OBJ) $(LIB_OBJS)
 
 (NAME): $(OBJECTS) $(LIB_OBJS)
-	$(RM) mandatory_printers.o
-	make liball
-	$(AR) $(NAME) $(OBJECTS) $(LIB_OBJS)
+	@make liball
+	@$(AR) $(NAME) $(OBJECTS) $(LIB_OBJS)
 
 # All rule
 all: $(NAME)
@@ -38,11 +28,11 @@ all: $(NAME)
 
 # Clean --> remove obj files
 clean:
-	$(RM) $(MAN_OBJ) $(OBJECTS) $(LIB_OBJS) main a.out
+	@$(RM) $(OBJECTS) $(LIB_OBJS)
 
 # Fclean --> clean + rm $(NAME)
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 # Re --> Recreate $(NAME)
 re: fclean all
@@ -59,13 +49,5 @@ libclean:
 	@cd $(LIB) && make clean
 
 
-# Testing targets
-main: main.c printf.c
-	$(CC) $(CFLAGS) main.c $(SOURCES) -L. ./libft/libft.a -o main
-test:
-	$(CC) $(CFLAGS) $(TEST) -L. $(NAME) -L. ./libft/libft.a -o main
-
-
-
 # Execute as rules only
-.PHONY: all clean fclean re liball libclean libcleanall main $(NAME)
+.PHONY: all clean fclean re liball libclean libcleanall $(NAME)
