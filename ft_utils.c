@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 13:57:56 by sboukiou          #+#    #+#             */
+/*   Updated: 2024/11/28 14:00:12 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include "ft_printf.h"
+
 int	ft_min(int a, int b)
 {
 	if (a > b)
@@ -16,7 +29,7 @@ int	ft_max(int a, int b)
 
 int	print_spaces(int count)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (len < count)
@@ -26,14 +39,13 @@ int	print_spaces(int count)
 
 int	print_zeros(int count)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (len < count)
 		len += print_char('0');
 	return (len);
 }
-
 
 int	get_num_len(long long number)
 {
@@ -54,40 +66,3 @@ int	get_num_len(long long number)
 	}
 	return (len);
 }
-
-int	print_large_numbers(long long number)
-{
-	int	len;
-
-	len = 0;
-	if (!number)
-		return (print_char('0'));
-	if (number < 0)
-	{
-		len += print_char('-');
-		number *= -1;
-	}
-	if (number < 10)
-		return (len += print_char(number + '0'));
-	len += print_large_numbers(number / 10);
-	len += print_char(number % 10 + '0');
-	return (len);
-}
-
-int	get_hex_len(unsigned long number, int hash)
-{
-	int	len;
-
-	len = 0;
-	if (hash && number)
-		len += 2;
-	if (!number)
-		return (len + 1);
-	while (number > 0)
-	{
-		number /= 16;
-		len++;
-	}
-	return (len);
-}
-

@@ -1,21 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_unsigned_bonus.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 14:13:00 by sboukiou          #+#    #+#             */
+/*   Updated: 2024/11/28 14:20:51 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	print_large_unsigned(unsigned long number)
-{
-	int	len;
-
-	len = 0;
-	if (!number)
-		return (print_char('0'));
-	if (number < 10)
-		return (len += print_char(number + '0'));
-	len += print_large_unsigned(number / 10);
-	len += print_char(number % 10 + '0');
-	return (len);
-}
-
-int	print_zero(unsigned int number, t_tokens *tokens)
+static int	print_zero(unsigned int number, t_tokens *tokens)
 {
 	int	len;
 
@@ -24,17 +22,17 @@ int	print_zero(unsigned int number, t_tokens *tokens)
 	return (len);
 }
 
-
 static int	print_prec(long number, t_tokens *tokens)
 {
 	int	len;
+	int	num_len;
 
 	len = 0;
-	len += print_spaces(tokens->width - ft_max(tokens->prec, get_num_len(number)));
+	num_len = get_num_len(number);
+	len += print_spaces(tokens->width - ft_max(tokens->prec, num_len));
 	len += print_zeros(tokens->prec - get_num_len(number));
 	return (len);
 }
-
 
 static int	print_minus(unsigned long number, t_tokens *tokens)
 {
@@ -65,41 +63,46 @@ static int	print_minus(unsigned long number, t_tokens *tokens)
 	return (len);
 }
 
+static int	print_no_flags(int number, t_tokens *tokens)
+{
+	int	len;
+	int	num_len;
+
+	len = 0;
+	num_len = get_num_len(number);
+	if (tokens->space && !tokens->plus)
+		len += print_char(' ');
+	len += print_spaces(tokens->width - num_len - len - tokens->plus);
+	if (tokens->plus)
+		len += print_char('+');
+	len += print_large_unsigned(number);
+	return (len);
+}
+
 int	print_unsigned_bonus(unsigned long number, t_tokens *tokens)
 {
 	int	len;
 
 	len = 0;
-		if (tokens->minus)
-			return (print_minus(number, tokens));
-		if (tokens->point)
-		{
-			len += print_prec(number, tokens);
-			if (!tokens->prec && !number)
-			{
-				if (tokens->width)
-					len += print_char(' ');
-			}
-			else
-				len += print_large_unsigned(number);
-			return (len);
-		}
-		else if (tokens->zero)
-		{
-			if (tokens->plus)
-				len += print_char('+');
-			else if (tokens->space)
-				len += print_char(' ');
-			len += print_zeros(tokens->width - get_num_len(number) - len);
-		}
+	if (tokens->minus)
+		return (print_minus(number, tokens));
+	if (tokens->point)
+	{
+		len += print_prec(number, tokens);
+		if ((!tokens->prec && !number) && tokens->width)
+			len += print_char(' ');
 		else
-		{
-			if (tokens->space && !tokens->plus)
-				len += print_char(' ');
-			len += print_spaces(tokens->width - get_num_len(number) - len - tokens->plus);
-			if (tokens->plus)
-				len += print_char('+');
-		}
-		len += print_large_unsigned(number);
-	return (len);
+			len += print_large_unsigned(number);
+		return (len);
+	}
+	else if (tokens->zero)
+	{
+		if (tokens->plus)
+			len += print_char('+');
+		else if (tokens->space)
+			len += print_char(' ');
+		len += print_zeros(tokens->width - get_num_len(number) - len);
+		return (len);
+	}
+	return (print_no_flags(number, tokens));
 }

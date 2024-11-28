@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_string_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 14:12:01 by sboukiou          #+#    #+#             */
+/*   Updated: 2024/11/28 14:12:39 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include "ft_printf.h"
 
@@ -32,7 +44,7 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 	else if (tokens->minus)
 	{
 		if (!string && !tokens->prec)
-			string =  "(null)";
+			string = "(null)";
 		len += print_string(string);
 		while (len < tokens->width)
 			len += print_char(' ');
@@ -41,7 +53,7 @@ int	print_string_bonus(char *string, t_tokens *tokens)
 	else
 	{
 		if (!string)
-			string =  "(null)";
+			string = "(null)";
 		len = ft_strlen(string);
 		while (len < tokens->width)
 			len += print_char(' ');

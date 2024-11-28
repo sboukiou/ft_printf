@@ -1,10 +1,20 @@
-#include "ft_printf.h"
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_address_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 14:08:08 by sboukiou          #+#    #+#             */
+/*   Updated: 2024/11/28 14:08:40 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_printf.h"
+#include "ft_printf.h"
 
 int	print_hex_large(unsigned long number, int hash)
 {
-
 	int	len;
 
 	len = 0;
@@ -18,7 +28,6 @@ int	print_hex_large(unsigned long number, int hash)
 	len += print_char(HEX_BASE[number % 16]);
 	return (len);
 }
-
 
 int	print_address_bonus(void	*address, t_tokens *tokens)
 {
@@ -43,4 +52,3 @@ int	print_address_bonus(void	*address, t_tokens *tokens)
 	len += print_hex_large(addr_value, tokens->hash);
 	return (len);
 }
-

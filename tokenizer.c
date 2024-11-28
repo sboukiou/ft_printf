@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 14:25:46 by sboukiou          #+#    #+#             */
+/*   Updated: 2024/11/28 14:28:15 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include "ft_printf.h"
 
@@ -15,8 +27,7 @@ int	is_set(char c, char *str)
 	return (0);
 }
 
-
-static	t_type get_type(char c)
+static t_type	get_type(char c)
 {
 	if (c == 'c')
 		return (CHAR);
@@ -39,16 +50,10 @@ static	t_type get_type(char c)
 	return (ERR);
 }
 
-
-
-t_tokens	*get_tokens(const char *buffer)
+static int	fill_buffer(char *buffer, t_tokens *tokens)
 {
 	int	i;
-	t_tokens	*tokens;
 
-	tokens = (t_tokens *)ft_calloc(1, sizeof(t_tokens));
-	if (!tokens)
-		return (NULL);
 	i = 0;
 	while (is_set(buffer[i], FLAGS))
 	{
@@ -64,6 +69,18 @@ t_tokens	*get_tokens(const char *buffer)
 			tokens->zero = 1;
 		i++;
 	}
+	return (i);
+}
+
+t_tokens	*get_tokens(const char *buffer)
+{
+	int			i;
+	t_tokens	*tokens;
+
+	tokens = (t_tokens *)ft_calloc(1, sizeof(t_tokens));
+	if (!tokens)
+		return (NULL);
+	i = fill_buffer((char *)buffer, tokens);
 	tokens->width = ft_atoi(buffer + i);
 	while (ft_isdigit(buffer[i]))
 		i++;
@@ -76,5 +93,5 @@ t_tokens	*get_tokens(const char *buffer)
 			i++;
 	}
 	tokens->type = get_type(buffer[i]);
-		return (tokens);
+	return (tokens);
 }

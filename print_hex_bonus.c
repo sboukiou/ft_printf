@@ -1,10 +1,20 @@
-#include "ft_printf.h"
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hex_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 13:53:44 by sboukiou          #+#    #+#             */
+/*   Updated: 2024/11/28 14:07:21 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_printf.h"
+#include "ft_printf.h"
 
 static int	print_hex_lower(unsigned int number, int hash)
 {
-
 	int	len;
 
 	len = 0;
@@ -24,7 +34,6 @@ static int	print_hex_lower(unsigned int number, int hash)
 
 static int	print_hex_upper(unsigned int number, int hash)
 {
-
 	int	len;
 
 	len = 0;
@@ -45,10 +54,14 @@ static int	print_hex_upper(unsigned int number, int hash)
 static int	print_prec(long number, t_tokens *tokens, int upper)
 {
 	int	len;
+	int	max_size;
+	int	hex_len;
 
 	len = 0;
-	len += print_spaces(tokens->width - ft_max(tokens->prec, get_hex_len(number, tokens->hash)));
-	len += print_zeros(tokens->prec - get_hex_len(number, tokens->hash));
+	hex_len = get_hex_len(number, tokens->hash);
+	max_size = ft_max(tokens->prec, hex_len);
+	len += print_spaces(tokens->width - max_size);
+	len += print_zeros(tokens->prec - hex_len);
 	if (upper)
 	{
 		if (tokens->prec || number)
@@ -64,10 +77,10 @@ static int	print_prec(long number, t_tokens *tokens, int upper)
 	return (len);
 }
 
-
-int print_hex_lower_bonus(unsigned int number, t_tokens *tokens)
+int	print_hex_l_bonus(unsigned int number, t_tokens *tokens)
 {
 	int	len;
+
 	len = 0;
 	if (tokens->minus)
 	{
@@ -75,7 +88,7 @@ int print_hex_lower_bonus(unsigned int number, t_tokens *tokens)
 		if (!tokens->point || (tokens->prec || number))
 			len += print_hex_lower(number, tokens->hash);
 		while (len < tokens->width)
-			len +=  print_char(' ');
+			len += print_char(' ');
 		return (len);
 	}
 	if (tokens->point)
@@ -89,9 +102,10 @@ int print_hex_lower_bonus(unsigned int number, t_tokens *tokens)
 	return (len);
 }
 
-int print_hex_upper_bonus(unsigned int number, t_tokens *tokens)
+int	print_hex_u_bonus(unsigned int number, t_tokens *tokens)
 {
 	int	len;
+
 	len = 0;
 	if (tokens->minus)
 	{
@@ -99,7 +113,7 @@ int print_hex_upper_bonus(unsigned int number, t_tokens *tokens)
 		if (!tokens->point || (tokens->prec || number))
 			len += print_hex_upper(number, tokens->hash);
 		while (len < tokens->width)
-			len +=  print_char(' ');
+			len += print_char(' ');
 		return (len);
 	}
 	if (tokens->point)

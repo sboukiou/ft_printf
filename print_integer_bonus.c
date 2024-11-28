@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_integer_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sboukiou <sboukiou@1337.ma>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 14:09:23 by sboukiou          #+#    #+#             */
+/*   Updated: 2024/11/28 14:11:43 by sboukiou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft/libft.h"
 
@@ -34,6 +46,17 @@ static int	print_minus(long number, t_tokens *tokens)
 	return (len);
 }
 
+static int	print_zero(int number, int width)
+{
+	int	len;
+
+	len = 0;
+	len += print_char('-');
+	len += print_zeros(width - get_num_len(number));
+	len += print_large_numbers((unsigned int)-number);
+	return (len);
+}
+
 int	print_integers_bonus(int number, t_tokens *tokens)
 {
 	int	len;
@@ -53,11 +76,7 @@ int	print_integers_bonus(int number, t_tokens *tokens)
 		return (len);
 	}
 	if (tokens->zero)
-	{
-		len += print_char('-');
-		len += print_zeros(tokens->width - get_num_len(number));
-		len += print_large_numbers((unsigned int)-number);
-	}
+		len += print_zero(number, tokens->width);
 	else
 	{
 		len += print_spaces(tokens->width - get_num_len(number));
