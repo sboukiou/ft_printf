@@ -13,12 +13,6 @@
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
-static	int	print_null(void)
-{
-	print_string("NULL");
-	return (4);
-}
-
 int	ft_printf(const char *buffer, ...)
 {
 	int			total_length;
@@ -29,8 +23,8 @@ int	ft_printf(const char *buffer, ...)
 	va_start(args_list, buffer);
 	index = 0;
 	total_length = 0;
-	if (!buffer)
-		return (print_null());
+	if (!buffer || write(1, 0, 0) < 0)
+		return (-1);
 	while (buffer[index])
 	{
 		if (buffer[index] == '%')

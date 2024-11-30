@@ -47,6 +47,10 @@ int	print_address_bonus(void	*address, t_tokens *tokens)
 			len += print_char(' ');
 		return (len);
 	}
+	if (tokens->plus)
+		len += print_char('+');
+	else if (tokens->space)
+		len += print_char(' ');
 	while (len < tokens->width - hex_len)
 		len += print_char(' ');
 	len += print_hex_large(addr_value, tokens->hash);
