@@ -35,7 +35,7 @@ int	ft_printf(const char *buffer, ...)
 	va_start(args_list, buffer);
 	index = 0;
 	total_length = 0;
-	if (!buffer || write(STDOUT, 0, 0) < 0)
+	if (!buffer || write(1, 0, 0) < 0)
 		return (-1);
 	while (buffer[index])
 	{
@@ -47,6 +47,7 @@ int	ft_printf(const char *buffer, ...)
 			total_length += call_printer(tokens, args_list);
 			while (!is_set(buffer[index + 1], TYPES))
 				index++;
+			index++;
 		}
 		else
 			total_length += print_char(buffer[index]);
