@@ -39,11 +39,11 @@ int	ft_printf(const char *buffer, ...)
 		return (-1);
 	while (buffer[index])
 	{
-		if (buffer[index++] == '%')
+		if (buffer[index] == '%')
 		{
-			if (check_precnd(buffer + index) == -1)
+			if (check_precnd(buffer + index + 1) == -1)
 				return (-1);
-			tokens = get_tokens(buffer + index);
+			tokens = get_tokens(buffer + index + 1);
 			total_length += call_printer(tokens, args_list);
 			while (!is_set(buffer[index], TYPES))
 				index++;
