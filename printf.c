@@ -37,7 +37,7 @@ int	ft_printf(const char *buffer, ...)
 	total_length = 0;
 	if (!buffer || write(STDOUT, 0, 0) < 0)
 		return (-1);
-	while (buffer[index++])
+	while (buffer[index])
 	{
 		if (buffer[index++] == '%')
 		{
@@ -50,6 +50,7 @@ int	ft_printf(const char *buffer, ...)
 		}
 		else
 			total_length += print_char(buffer[index]);
+		index++;
 	}
 	va_end(args_list);
 	return (total_length);
