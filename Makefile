@@ -7,7 +7,7 @@ LIB_A = ./libft/libft.a
 AR = ar -rcs
 
 # FILES  for printf bonus
-SOURCES = printf_bonus.c parser.c tokenizer.c printers.c print_integer_bonus.c ft_utils.c ft_utils_2.c print_hex_bonus.c print_char_bonus.c print_string_bonus.c print_address_bonus.c print_unsigned_bonus.c
+SOURCES = printf.c parser.c tokenizer.c printers.c print_integer_bonus.c ft_utils.c ft_utils_2.c print_hex_bonus.c print_char_bonus.c print_string_bonus.c print_address_bonus.c print_unsigned_bonus.c
 OBJECTS := $(SOURCES:%.c=%.o)
 
 # FILES for libft deps
@@ -15,7 +15,7 @@ LIB_SRCS= $(LIB)/*.c
 LIB_OBJS = $(LIB_SRCS:%.c=%.o)
 
 
-(NAME): $(OBJECTS) $(LIB_OBJS)
+$(NAME): $(OBJECTS) $(LIB_OBJS)
 	@make liball
 	@$(AR) $(NAME) $(OBJECTS) $(LIB_OBJS)
 
