@@ -13,6 +13,18 @@
 #include "./libft/libft.h"
 #include "ft_printf.h"
 
+int	check_precnd(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (is_set(str[i], FLAGS))
+		i++;
+	if (!is_set(str[i], TYPES))
+		return (-1);
+	return (0);
+}
+
 int	ft_printf(const char *buffer, ...)
 {
 	int			total_length;
@@ -23,21 +35,22 @@ int	ft_printf(const char *buffer, ...)
 	va_start(args_list, buffer);
 	index = 0;
 	total_length = 0;
-	if (!buffer || write(1, 0, 0) < 0)
+	if (!buffer || write(STDOUT, 0, 0) < 0)
 		return (-1);
-	while (buffer[index])
+	while (buffer[index++])
 	{
-		if (buffer[index] == '%')
+		if (buffer[index++] == '%')
 		{
-			tokens = get_tokens(buffer + index + 1);
+			if (check_precnd(buffer + index) == -1)
+				return (-1);
+			tokens = get_tokens(buffer + index);
 			total_length += call_printer(tokens, args_list);
-			while (!is_set(buffer[index + 1], TYPES))
+			while (!is_set(buffer[index], TYPES))
 				index++;
-			index++;
 		}
 		else
 			total_length += print_char(buffer[index]);
-		index++;
 	}
+	va_end(args_list);
 	return (total_length);
 }

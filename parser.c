@@ -36,6 +36,8 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 		ret_val = print_hex_u_bonus(va_arg(args_list, unsigned int), tokens);
 	else if (tokens->type == PTR)
 		ret_val = print_address_bonus(va_arg(args_list, void *), tokens);
+	else if (tokens->type == ERR)
+		ret_val = print_char('%');
 	free(tokens);
 	return (ret_val);
 }
