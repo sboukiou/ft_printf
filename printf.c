@@ -45,7 +45,7 @@ int	ft_printf(const char *buffer, ...)
 				return (-1);
 			tokens = get_tokens(buffer + index + 1);
 			total_length += call_printer(tokens, args_list);
-			while (!is_set(buffer[index], TYPES))
+			while (!is_set(buffer[index + 1], TYPES))
 				index++;
 		}
 		else
