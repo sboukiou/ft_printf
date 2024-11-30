@@ -10,20 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft/libft.h"
 #include "ft_printf.h"
-
-static int	check_precnd(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (is_set(str[i], FLAGS))
-		i++;
-	if (!is_set(str[i], TYPES))
-		return (-1);
-	return (0);
-}
 
 static	int	handle_format(const char *buffer, va_list args_list, int *index)
 {
@@ -32,7 +19,13 @@ static	int	handle_format(const char *buffer, va_list args_list, int *index)
 
 	total = 0;
 	tokens = get_tokens(buffer + *index + 1);
-	total += call_printer(tokens, args_list);
+	total = call_printer(tokens, args_list);
+	if (total == -1)
+	{
+		print_char(buffer[*index]);
+		print_char(buffer[*index + 1]);
+		return (2);
+	}
 	while (!is_set(buffer[*index + 1], TYPES))
 		(*index)++;
 	return (total);
@@ -53,8 +46,6 @@ int	ft_printf(const char *buffer, ...)
 	{
 		if (buffer[index] == '%')
 		{
-			if (check_precnd(buffer + index) == -1)
-				return (-1);
 			total_length += handle_format(buffer, args_list, &index);
 			index++;
 		}

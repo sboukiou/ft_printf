@@ -37,7 +37,7 @@ int	call_printer(t_tokens *tokens, va_list args_list)
 	else if (tokens->type == PTR)
 		ret_val = print_address_bonus(va_arg(args_list, void *), tokens);
 	else if (tokens->type == ERR)
-		ret_val = print_char('%');
+		return (-1);
 	free(tokens);
 	return (ret_val);
 }
